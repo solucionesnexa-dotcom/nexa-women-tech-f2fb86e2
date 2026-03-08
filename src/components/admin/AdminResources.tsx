@@ -137,12 +137,13 @@ const AdminResources = () => {
               <option value="Notion">Notion</option>
               <option value="Video">Video</option>
               <option value="Template">Template</option>
+              <option value="Audio">Audio</option>
               <option value="Otro">Otro</option>
             </select>
             <input
               ref={fileRef}
               type="file"
-              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv,.zip,.png,.jpg,.jpeg,.mp4"
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv,.zip,.png,.jpg,.jpeg,.mp4,.mp3,.wav,.m4a,.ogg,.aac"
               className="text-sm text-muted-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-primary file:cursor-pointer"
             />
             <button
