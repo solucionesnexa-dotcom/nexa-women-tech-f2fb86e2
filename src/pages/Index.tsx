@@ -23,11 +23,10 @@ const Index = () => {
         <div className="container relative z-10 mx-auto px-4 pt-24 text-center max-w-4xl">
           <motion.div {...fadeUp}>
             <img src={nexaHeroLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-40 w-40 animate-float" />
-            <h1 className="font-display text-3xl font-bold leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl">
-              La próxima generación de carreras será diseñada
+            <h1 className="font-display text-4xl font-bold leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
+              Sé fundadora del movimiento que
               <br />
-              por mujeres que dominan{" "}
-              <span className="text-gradient-hero">la IA</span>
+              <span className="text-gradient-hero">empodera a mujeres con IA</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               Únete como Fundadora de Nexa Women Tech y aprende a usar inteligencia artificial y tecnología para construir una carrera flexible, autónoma y diseñada por ti.
