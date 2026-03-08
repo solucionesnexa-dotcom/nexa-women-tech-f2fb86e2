@@ -7,16 +7,14 @@ import nexaLogo from "@/assets/nexa-logo.png";
 
 const links = [
   { to: "/", label: "Inicio" },
-  { to: "/comunidad", label: "Comunidad" },
-  { to: "/ruta", label: "Ruta" },
   { to: "/manifiesto", label: "Manifiesto" },
+  { to: "/precios", label: "Precios" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  const { user, roles, signOut } = useAuth();
-  const isAdmin = roles.includes("admin");
+  const { user } = useAuth();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass">
