@@ -115,13 +115,22 @@ const Navbar = () => {
                   <LogOut size={14} /> Salir
                 </button>
               ) : (
-                <Link
-                  to="/precios"
-                  onClick={() => setOpen(false)}
-                  className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
-                >
-                  Únete
-                </Link>
+                <>
+                  <Link
+                    to="/auth"
+                    onClick={() => setOpen(false)}
+                    className="text-sm font-medium text-muted-foreground"
+                  >
+                    Iniciar sesión
+                  </Link>
+                  <Link
+                    to="/precios"
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
+                  >
+                    Únete
+                  </Link>
+                </>
               )}
             </div>
           </motion.div>
