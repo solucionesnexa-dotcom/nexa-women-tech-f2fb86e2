@@ -8,7 +8,7 @@ const links = [
   { to: "/", label: "Inicio" },
   { to: "/comunidad", label: "Comunidad" },
   { to: "/ruta", label: "Ruta" },
-  { to: "/precios", label: "Precios" },
+  { to: "/manifiesto", label: "Manifiesto" },
 ];
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3">
           <img src={nexaLogo} alt="Nexa Women Tech" className="h-10 w-10 rounded-lg" />
           <span className="font-display text-lg font-bold tracking-wide text-foreground">
-            NEXA <span className="text-accent">WOMEN TECH</span>
+            NEXA <span className="text-primary">WOMEN TECH</span>
           </span>
         </Link>
 
@@ -38,10 +38,10 @@ const Navbar = () => {
             </Link>
           ))}
           <Link
-            to="/auth"
+            to="/precios"
             className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
           >
-            Únete
+            Únete — 19€
           </Link>
         </div>
 
@@ -72,11 +72,11 @@ const Navbar = () => {
                 </Link>
               ))}
               <Link
-                to="/auth"
+                to="/precios"
                 onClick={() => setOpen(false)}
                 className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
               >
-                Únete
+                Únete — 19€
               </Link>
             </div>
           </motion.div>

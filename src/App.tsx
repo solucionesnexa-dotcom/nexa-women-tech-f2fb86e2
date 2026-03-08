@@ -9,6 +9,8 @@ import Comunidad from "./pages/Comunidad";
 import Ruta from "./pages/Ruta";
 import Precios from "./pages/Precios";
 import Auth from "./pages/Auth";
+import Manifiesto from "./pages/Manifiesto";
+import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/ruta" element={<Ruta />} />
           <Route path="/precios" element={<Precios />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/manifiesto" element={<Manifiesto />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
