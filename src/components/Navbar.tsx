@@ -89,18 +89,14 @@ const Navbar = () => {
                   {l.label}
                 </Link>
               ))}
-              {isAdmin && (
-                <Link to="/admin" onClick={() => setOpen(false)} className="text-sm font-medium text-muted-foreground">
-                  Admin
-                </Link>
-              )}
               {user ? (
-                <button
-                  onClick={() => { signOut(); setOpen(false); }}
-                  className="flex items-center gap-1.5 text-sm font-medium text-secondary"
+                <Link
+                  to="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
                 >
-                  <LogOut size={14} /> Salir
-                </button>
+                  Ir a Plataforma
+                </Link>
               ) : (
                 <>
                   <Link
