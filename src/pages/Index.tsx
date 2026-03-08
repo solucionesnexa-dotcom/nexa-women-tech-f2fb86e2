@@ -21,8 +21,8 @@ const Index = () => {
 
         <div className="container relative z-10 mx-auto px-4 pt-24 text-center max-w-4xl">
           <motion.div {...fadeUp}>
-            <img src={nexaLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-20 w-20 animate-float" />
-            <h1 className="font-display text-4xl font-bold leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
+            <img src={nexaLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-32 w-32 animate-float" />
+            <h1 className="font-display text-3xl font-bold leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl">
               La próxima generación de carreras será diseñada
               <br />
               por mujeres que dominan{" "}
