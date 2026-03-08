@@ -1,26 +1,26 @@
 import { motion } from "framer-motion";
-import { Check, Zap, ArrowRight, Sparkles } from "lucide-react";
+import { Check, ArrowRight, Shield } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const features = [
-  "Ruta estructurada de aprendizaje (Módulo 1)",
+  "Acceso a la comunidad de mujeres fundadoras",
+  "Cohortes de aprendizaje práctico con IA",
   "Retos semanales con accountability real",
   "Sesiones en directo de IA aplicada",
-  "Comunidad de constructoras",
-  "Dinámica semanal Lun-Mié-Vie",
-  "Acceso al feed por pilares",
-  "Inmersión cultural + mentalidad soberana",
+  "Acceso a Nexa Labs y recursos de IA",
+  "Badge de Fundadora permanente",
+  "Acceso anticipado a nuevas funcionalidades",
 ];
 
 const Precios = () => (
   <div className="min-h-screen bg-background pt-24 pb-16">
     <div className="container mx-auto px-4">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 text-center">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">Comunidad Autónoma Digital</p>
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Acceso Fundadora</p>
         <h1 className="font-display text-3xl font-bold md:text-4xl">
-          Tu entrada a la <span className="text-gradient-hero">soberanía digital</span>
+          Tu entrada a la <span className="text-gradient-hero">comunidad fundadora</span>
         </h1>
-        <p className="mt-3 text-muted-foreground">Cohorte fundadora: 20 plazas. Compromiso mínimo 3 meses.</p>
+        <p className="mt-3 text-muted-foreground">Plazas limitadas · acceso anticipado a todo.</p>
       </motion.div>
 
       <motion.div
@@ -34,13 +34,13 @@ const Precios = () => (
         </div>
 
         <div className="mb-2 flex items-center gap-2">
-          <Zap size={20} className="text-primary" />
-          <h3 className="font-display text-xl font-bold">Comunidad Autónoma Digital</h3>
+          <Shield size={20} className="text-primary" />
+          <h3 className="font-display text-xl font-bold">Founder Access</h3>
         </div>
-        <p className="mb-6 text-xs text-muted-foreground">Inmersión + retos semanales + comunidad</p>
+        <p className="mb-6 text-xs text-muted-foreground">Comunidad + Cohortes + Nexa Labs</p>
 
         <div className="mb-8">
-          <span className="font-display text-5xl font-bold">29€</span>
+          <span className="font-display text-5xl font-bold">19€</span>
           <span className="text-sm text-muted-foreground">/mes</span>
         </div>
 
@@ -57,16 +57,13 @@ const Precios = () => (
           to="/auth"
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
         >
-          Reservar plaza — Cohorte Fundadora
+          Reservar mi plaza como Fundadora — 19€
           <ArrowRight size={14} />
         </Link>
 
-        <div className="mt-6 flex items-start gap-2 rounded-lg bg-muted/50 p-3">
-          <Sparkles size={14} className="mt-0.5 shrink-0 text-accent" />
-          <p className="text-xs text-muted-foreground">
-            Después del Módulo 1 podrás desbloquear la <strong className="text-accent">Ruta PRO</strong> (+49€/mes) con Labs IA, feedback personalizado y módulos avanzados para generar ingresos reales.
-          </p>
-        </div>
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          Plazas limitadas · acceso anticipado a la comunidad fundadora.
+        </p>
       </motion.div>
     </div>
   </div>

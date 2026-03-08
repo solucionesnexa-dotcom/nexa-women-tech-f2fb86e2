@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Shield } from "lucide-react";
 import nexaLogo from "@/assets/nexa-logo.png";
 
 const Auth = () => {
@@ -16,10 +16,10 @@ const Auth = () => {
         <div className="mb-8 text-center">
           <img src={nexaLogo} alt="Nexa" className="mx-auto mb-4 h-16 w-16" />
           <h1 className="font-display text-2xl font-bold">
-            {mode === "register" ? "Únete a la revolución" : "Bienvenida de vuelta"}
+            {mode === "register" ? "Únete como Fundadora" : "Bienvenida de vuelta"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            {mode === "register" ? "Cohorte fundadora — 20 plazas" : "Accede a tu cuenta"}
+            {mode === "register" ? "Acceso anticipado · Plazas limitadas" : "Accede a tu cuenta"}
           </p>
         </div>
 
@@ -39,21 +39,29 @@ const Auth = () => {
             <input type="password" placeholder="Contraseña" className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground" />
           </div>
 
-          {mode === "register" && (
-            <select className="w-full rounded-xl border border-border bg-muted/50 px-4 py-3 text-sm text-muted-foreground outline-none">
-              <option>Nivel 1 — Autonomía Digital (29€/mes)</option>
-              <option>Nivel 2 — Ruta PRO IA (88€/mes)</option>
-            </select>
-          )}
-
           <button
             type="submit"
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-[1.02]"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3.5 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-[1.02]"
           >
-            {mode === "register" ? "Reservar mi plaza" : "Entrar"}
-            <ArrowRight size={14} />
+            {mode === "register" ? (
+              <>
+                <Shield size={14} />
+                Reservar mi plaza como Fundadora — 19€
+              </>
+            ) : (
+              <>
+                Entrar
+                <ArrowRight size={14} />
+              </>
+            )}
           </button>
         </form>
+
+        {mode === "register" && (
+          <p className="mt-4 text-center text-[11px] text-muted-foreground">
+            Plazas limitadas · acceso anticipado a la comunidad fundadora.
+          </p>
+        )}
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           {mode === "register" ? "¿Ya tienes cuenta?" : "¿No tienes cuenta?"}{" "}
