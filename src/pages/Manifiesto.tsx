@@ -99,15 +99,6 @@ const Manifiesto = () => (
         viewport={{ once: true }}
         className="mx-auto max-w-3xl mt-16 text-center space-y-6"
       >
-        <div className="flex flex-wrap justify-center gap-2 text-sm text-primary font-medium">
-          {["#SoberaníaDigital", "#NexaWomenTech", "#MujeresConIA", "#LibertadTecnológica", "#ConciliaciónReal"].map((tag) => (
-            <span key={tag} className="rounded-full bg-primary/10 px-4 py-1.5">{tag}</span>
-          ))}
-        </div>
-
-        <p className="text-muted-foreground text-sm">
-          Buzaina Hanine | Fundadora de Nexa Women Tech
-        </p>
 
         <Link
           to="/precios"
