@@ -187,6 +187,7 @@ const Index = () => {
                   desc: "Aprende herramientas de IA y sistemas digitales. Descubre nuevas posibilidades profesionales.",
                   color: "text-primary",
                   bgColor: "bg-primary",
+                  textColor: "text-accent-foreground",
                 },
                 {
                   stage: "02",
@@ -194,6 +195,7 @@ const Index = () => {
                   desc: "Diseña tu propio sistema profesional digital. Construye workflows y automatizaciones.",
                   color: "text-accent",
                   bgColor: "bg-accent",
+                  textColor: "text-accent-foreground",
                 },
                 {
                   stage: "03",
@@ -201,6 +203,7 @@ const Index = () => {
                   desc: "Construye una carrera flexible y autónoma. Genera ingresos con tus propios sistemas.",
                   color: "text-secondary",
                   bgColor: "bg-secondary",
+                  textColor: "text-accent-foreground",
                 },
               ].map((stage, i) => (
                 <motion.div
