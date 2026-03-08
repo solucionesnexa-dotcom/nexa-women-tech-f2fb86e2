@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/Navbar";
+import AdminGuard from "@/components/AdminGuard";
 import Index from "./pages/Index";
 import Comunidad from "./pages/Comunidad";
 import Ruta from "./pages/Ruta";
@@ -33,7 +34,7 @@ const App = () => (
             <Route path="/precios" element={<Precios />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/manifiesto" element={<Manifiesto />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={<AdminGuard><Admin /></AdminGuard>} />
             <Route path="/privacidad" element={<Privacidad />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFound />} />
