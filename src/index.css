@@ -99,8 +99,8 @@
   }
 
   .glass {
-    background: hsl(230 25% 10% / 0.6);
+    background: hsl(253 60% 14% / 0.6);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(230 20% 18% / 0.5);
+    border: 1px solid hsl(253 30% 20% / 0.5);
   }
 }
