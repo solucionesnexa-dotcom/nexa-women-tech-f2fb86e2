@@ -52,34 +52,22 @@ const CommunityFeed = () => {
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ["community-posts"],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data: postsOnly, error } = await supabase
         .from("community_posts")
-        .select("*, profile:profiles!community_posts_user_id_fkey(full_name, is_founder, avatar_url)")
+        .select("*")
         .order("created_at", { ascending: false });
+      if (error) throw error;
 
-      if (error) {
-        // Fallback: fetch without join if FK doesn't exist
-        const { data: postsOnly, error: err2 } = await supabase
-          .from("community_posts")
-          .select("*")
-          .order("created_at", { ascending: false });
-        if (err2) throw err2;
+      const userIds = [...new Set((postsOnly ?? []).map((p) => p.user_id))];
+      const { data: profiles } = userIds.length
+        ? await supabase.from("profiles").select("user_id, full_name, is_founder, avatar_url").in("user_id", userIds)
+        : { data: [] };
 
-        // Fetch profiles separately
-        const userIds = [...new Set((postsOnly ?? []).map((p) => p.user_id))];
-        const { data: profiles } = await supabase
-          .from("profiles")
-          .select("user_id, full_name, is_founder, avatar_url")
-          .in("user_id", userIds);
-
-        const profileMap = new Map(profiles?.map((p) => [p.user_id, p]));
-        return (postsOnly ?? []).map((p) => ({
-          ...p,
-          profile: profileMap.get(p.user_id) ?? null,
-        })) as PostWithProfile[];
-      }
-
-      return (data ?? []) as PostWithProfile[];
+      const profileMap = new Map(profiles?.map((p) => [p.user_id, p]));
+      return (postsOnly ?? []).map((p) => ({
+        ...p,
+        profile: profileMap.get(p.user_id) ?? null,
+      })) as PostWithProfile[];
     },
   });
 
