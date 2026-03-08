@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { BookOpen, FlaskConical, Calendar, Users, Terminal } from "lucide-react";
 import AIChatbot from "@/components/AIChatbot";
 import CommunityFeed from "@/components/community/CommunityFeed";
+import CommunityTerminal from "@/components/community/CommunityTerminal";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
