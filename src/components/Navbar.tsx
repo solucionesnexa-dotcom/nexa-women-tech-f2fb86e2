@@ -24,7 +24,7 @@ const Navbar = () => {
         <Link to="/" className="flex items-center gap-3">
           <img src={nexaLogo} alt="Nexa Women Tech" className="h-10 w-10 rounded-lg" />
           <span className="font-display text-lg font-bold tracking-wide text-foreground">
-            NEXA <span className="text-primary">WOMEN TECH</span>
+            NEXA <span className="text-accent">WOMEN TECH</span>
           </span>
         </Link>
 
