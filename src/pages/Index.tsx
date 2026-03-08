@@ -285,7 +285,9 @@ const Index = () => {
           </div>
           <div className="flex gap-4 text-xs text-muted-foreground">
             <Link to="/manifiesto" className="hover:text-primary transition-colors">Manifiesto</Link>
-            <a href="mailto:info@nexasoluciones.es" className="hover:text-primary transition-colors">info@nexasoluciones.es</a>
+            <Link to="/privacidad" className="hover:text-primary transition-colors">Privacidad</Link>
+            <Link to="/cookies" className="hover:text-primary transition-colors">Cookies</Link>
+            <a href="mailto:nexawomentech@gmail.com" className="hover:text-primary transition-colors">nexawomentech@gmail.com</a>
           </div>
         </div>
       </footer>
