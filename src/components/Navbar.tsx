@@ -38,24 +38,13 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          {isAdmin && (
-            <Link
-              to="/admin"
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                location.pathname === "/admin" ? "text-accent" : "text-muted-foreground"
-              }`}
-            >
-              Admin
-            </Link>
-          )}
           {user ? (
-            <button
-              onClick={signOut}
-              className="flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-muted-foreground transition-all hover:border-secondary hover:text-secondary"
+            <Link
+              to="/dashboard"
+              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
             >
-              <LogOut size={14} />
-              Salir
-            </button>
+              Ir a Plataforma
+            </Link>
           ) : (
             <div className="flex items-center gap-3">
               <Link
