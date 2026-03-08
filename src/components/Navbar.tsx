@@ -63,7 +63,7 @@ const Navbar = () => {
               to="/precios"
               className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
             >
-              Únete — 19€
+              Únete
             </Link>
           )}
         </div>
