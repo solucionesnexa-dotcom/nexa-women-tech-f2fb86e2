@@ -214,7 +214,7 @@ const Index = () => {
                   transition={{ delay: i * 0.15 }}
                   className="relative flex flex-col items-center text-center px-6 py-8"
                 >
-                  <div className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full ${stage.bgColor} font-display text-lg font-bold text-primary-foreground mb-6`}>
+                  <div className={`relative z-10 flex h-14 w-14 items-center justify-center rounded-full ${stage.bgColor} font-display text-lg font-bold ${stage.textColor} mb-6`}>
                     {stage.stage}
                   </div>
                   <h3 className={`font-display text-xl font-bold mb-3 ${stage.color}`}>{stage.title}</h3>
