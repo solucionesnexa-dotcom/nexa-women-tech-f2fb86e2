@@ -227,7 +227,7 @@ const Index = () => {
       </section>
 
       {/* Manifesto Quote */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.blockquote
             initial={{ opacity: 0 }}
