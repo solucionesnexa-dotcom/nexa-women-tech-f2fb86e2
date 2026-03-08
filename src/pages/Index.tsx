@@ -30,7 +30,7 @@ const Index = () => {
             </h1>
             <p className="mt-4 font-display text-lg font-semibold tracking-wide text-primary sm:text-xl">
               Empowered by AI. Empowering others.
-            </h1>
+            </p>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               Reserva tu plaza en Nexa Women Tech y aprende a construir una carrera profesional autónoma y flexible usando inteligencia artificial.
             </p>
