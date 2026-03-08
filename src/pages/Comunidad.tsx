@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { BookOpen, FlaskConical, Calendar, Users } from "lucide-react";
+import { BookOpen, FlaskConical, Calendar, Users, Terminal } from "lucide-react";
 import AIChatbot from "@/components/AIChatbot";
 import CommunityFeed from "@/components/community/CommunityFeed";
 import { supabase } from "@/integrations/supabase/client";
