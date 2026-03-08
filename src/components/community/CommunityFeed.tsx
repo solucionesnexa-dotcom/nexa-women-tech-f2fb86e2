@@ -63,7 +63,7 @@ const CommunityFeed = () => {
         ? await supabase.from("profiles").select("user_id, full_name, is_founder, avatar_url").in("user_id", userIds)
         : { data: [] };
 
-      const profileMap = new Map(profiles?.map((p) => [p.user_id, p]));
+      const profileMap = new Map((profiles ?? []).map((p) => [p.user_id, p] as const));
       return (postsOnly ?? []).map((p) => ({
         ...p,
         profile: profileMap.get(p.user_id) ?? null,
