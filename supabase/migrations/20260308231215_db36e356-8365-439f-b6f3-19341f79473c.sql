@@ -1,0 +1,1 @@
+ALTER TABLE public.resources ADD COLUMN section text NOT NULL DEFAULT 'General';
