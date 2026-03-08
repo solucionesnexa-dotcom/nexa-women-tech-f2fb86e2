@@ -29,7 +29,7 @@ const Index = () => {
               <span className="text-gradient-hero">Empodérate con IA — Empodera a otras</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-              Únete como Fundadora de Nexa Women Tech y aprende a usar inteligencia artificial y tecnología para construir una carrera flexible, autónoma y diseñada por ti.
+              Reserva tu plaza en Nexa Women Tech y aprende a construir una carrera profesional autónoma y flexible usando inteligencia artificial.
             </p>
           </motion.div>
 
