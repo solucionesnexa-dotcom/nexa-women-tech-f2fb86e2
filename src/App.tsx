@@ -34,6 +34,8 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/manifiesto" element={<Manifiesto />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/privacidad" element={<Privacidad />} />
+            <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
