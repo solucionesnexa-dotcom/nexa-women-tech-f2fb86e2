@@ -24,9 +24,9 @@ const Index = () => {
           <motion.div {...fadeUp}>
             <img src={nexaHeroLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-40 w-40 animate-float" />
             <h1 className="font-display text-4xl font-bold leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
-              Funda el movimiento.
+              Funda el movimiento
               <br />
-              <span className="text-gradient-hero">Empodérate con IA. Empodera a otras.</span>
+              <span className="text-gradient-hero">Empodérate con IA — Empodera a otras</span>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
               Únete como Fundadora de Nexa Women Tech y aprende a usar inteligencia artificial y tecnología para construir una carrera flexible, autónoma y diseñada por ti.
