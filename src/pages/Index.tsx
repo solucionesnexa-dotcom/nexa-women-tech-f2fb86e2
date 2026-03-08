@@ -28,7 +28,7 @@ const pillars = [
 
 const stats = [
   { value: "20", label: "Plazas cohorte fundadora" },
-  { value: "29€", label: "Nivel 1 / mes" },
+  { value: "29€/mes", label: "Comunidad + Inmersión + Retos" },
   { value: "3", label: "Meses compromiso mínimo" },
 ];
 
@@ -37,7 +37,6 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background elements */}
         <div className="absolute inset-0">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow" />
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-secondary/5 blur-3xl animate-pulse-glow" style={{ animationDelay: "1.5s" }} />
@@ -46,23 +45,16 @@ const Index = () => {
         </div>
 
         <div className="container relative z-10 mx-auto px-4 pt-24 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <img src={nexaLogo} alt="Nexa Women Tech" className="mx-auto mb-8 h-24 w-24 animate-float" />
-
             <p className="mb-4 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               El fin del mito de la conciliación
             </p>
-
             <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
               Mujeres digitalmente soberanas que construyen{" "}
               <span className="text-gradient-hero">sistemas</span>, no{" "}
               <span className="text-secondary">cadenas</span>
             </h1>
-
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
               No necesitas elegir entre tu vida y tu carrera. Con tecnología puedes construir un sistema profesional propio. La verdadera conciliación no es una negociación; es un derecho.
             </p>
@@ -75,11 +67,11 @@ const Index = () => {
             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <Link
-              to="/auth"
+              to="/precios"
               className="group flex items-center gap-2 rounded-xl bg-primary px-8 py-4 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
             >
               <Zap size={18} />
-              Reserva tu plaza — Cohorte Fundadora
+              Únete por 29€/mes — Cohorte Fundadora
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
@@ -219,7 +211,7 @@ const Index = () => {
               to="/precios"
               className="mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-10 py-4 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
             >
-              Ver planes y precios
+              Únete por 29€/mes
               <ArrowRight size={16} />
             </Link>
           </motion.div>

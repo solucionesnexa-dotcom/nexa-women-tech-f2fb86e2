@@ -6,13 +6,13 @@
 
 @layer base {
   :root {
-    --background: 222 47% 11%;
+    --background: 253 100% 10%;
     --foreground: 210 40% 95%;
 
-    --card: 230 25% 10%;
+    --card: 253 60% 14%;
     --card-foreground: 210 40% 95%;
 
-    --popover: 230 25% 12%;
+    --popover: 253 55% 16%;
     --popover-foreground: 210 40% 95%;
 
     --primary: 175 70% 42%;
@@ -21,8 +21,8 @@
     --secondary: 350 75% 55%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 230 20% 15%;
-    --muted-foreground: 220 15% 55%;
+    --muted: 253 40% 18%;
+    --muted-foreground: 250 15% 55%;
 
     --accent: 40 90% 55%;
     --accent-foreground: 230 30% 6%;
@@ -30,23 +30,23 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 230 20% 18%;
-    --input: 230 20% 18%;
+    --border: 253 30% 20%;
+    --input: 253 30% 20%;
     --ring: 175 70% 42%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 230 25% 8%;
+    --sidebar-background: 253 80% 12%;
     --sidebar-foreground: 210 40% 95%;
     --sidebar-primary: 175 70% 42%;
-    --sidebar-primary-foreground: 230 30% 6%;
-    --sidebar-accent: 230 20% 15%;
+    --sidebar-primary-foreground: 253 100% 10%;
+    --sidebar-accent: 253 40% 18%;
     --sidebar-accent-foreground: 210 40% 95%;
-    --sidebar-border: 230 20% 18%;
+    --sidebar-border: 253 30% 20%;
     --sidebar-ring: 175 70% 42%;
 
     --gradient-hero: linear-gradient(135deg, hsl(175 70% 42%), hsl(350 75% 55%));
-    --gradient-card: linear-gradient(145deg, hsl(230 25% 10%), hsl(230 25% 14%));
+    --gradient-card: linear-gradient(145deg, hsl(253 60% 14%), hsl(253 50% 18%));
     --gradient-accent: linear-gradient(135deg, hsl(40 90% 55%), hsl(350 75% 55%));
     --shadow-glow-primary: 0 0 40px -10px hsl(175 70% 42% / 0.4);
     --shadow-glow-accent: 0 0 30px -10px hsl(40 90% 55% / 0.3);
@@ -99,8 +99,8 @@
   }
 
   .glass {
-    background: hsl(230 25% 10% / 0.6);
+    background: hsl(253 60% 14% / 0.6);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(230 20% 18% / 0.5);
+    border: 1px solid hsl(253 30% 20% / 0.5);
   }
 }
