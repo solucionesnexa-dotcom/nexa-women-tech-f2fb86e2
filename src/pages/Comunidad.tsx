@@ -91,6 +91,18 @@ const Comunidad = () => {
             </div>
 
             <div className="mx-auto max-w-2xl space-y-4">
+              {/* Compose box at top */}
+              <div className="flex items-center gap-3 rounded-2xl bg-gradient-card border border-border p-4">
+                <input
+                  type="text"
+                  placeholder="Comparte tu avance..."
+                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
+                />
+                <button className="rounded-lg bg-primary p-2 text-primary-foreground transition hover:shadow-glow-primary">
+                  <Send size={16} />
+                </button>
+              </div>
+
               {filtered.map((post, i) => (
                 <motion.article
                   key={post.id}
@@ -132,17 +144,6 @@ const Comunidad = () => {
                   </div>
                 </motion.article>
               ))}
-
-              <div className="flex items-center gap-3 rounded-2xl bg-gradient-card border border-border p-4">
-                <input
-                  type="text"
-                  placeholder="Comparte tu avance..."
-                  className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
-                />
-                <button className="rounded-lg bg-primary p-2 text-primary-foreground transition hover:shadow-glow-primary">
-                  <Send size={16} />
-                </button>
-              </div>
             </div>
           </>
         )}
