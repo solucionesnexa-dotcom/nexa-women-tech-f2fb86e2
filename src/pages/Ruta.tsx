@@ -55,8 +55,8 @@ const dayColors: Record<string, string> = {
 };
 
 const Ruta = () => (
-  <div className="min-h-screen bg-background pt-24 pb-16">
-    <div className="container mx-auto px-4">
+  <div className="min-h-screen bg-background py-8">
+    <div className="container mx-auto px-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-12 text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Ruta de aprendizaje</p>
         <h1 className="font-display text-3xl font-bold md:text-4xl">
