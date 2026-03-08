@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Users, BookOpen, FlaskConical, CheckCircle2, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import nexaLogo from "@/assets/nexa-logo.png";
+import nexaHeroLogo from "@/assets/nexa-hero-logo.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -21,7 +22,7 @@ const Index = () => {
 
         <div className="container relative z-10 mx-auto px-4 pt-24 text-center max-w-4xl">
           <motion.div {...fadeUp}>
-            <img src={nexaLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-32 w-32 animate-float" />
+            <img src={nexaHeroLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-40 w-40 animate-float" />
             <h1 className="font-display text-3xl font-bold leading-[1.15] sm:text-4xl md:text-5xl lg:text-6xl">
               La próxima generación de carreras será diseñada
               <br />
