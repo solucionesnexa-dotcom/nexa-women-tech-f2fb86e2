@@ -1,0 +1,89 @@
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import nexaLogo from "@/assets/nexa-logo.png";
+
+const links = [
+  { to: "/", label: "Inicio" },
+  { to: "/comunidad", label: "Comunidad" },
+  { to: "/ruta", label: "Ruta" },
+  { to: "/precios", label: "Precios" },
+];
+
+const Navbar = () => {
+  const [open, setOpen] = useState(false);
+  const location = useLocation();
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 glass">
+      <div className="container mx-auto flex items-center justify-between py-3 px-4">
+        <Link to="/" className="flex items-center gap-3">
+          <img src={nexaLogo} alt="Nexa Women Tech" className="h-10 w-10 rounded-lg" />
+          <span className="font-display text-lg font-bold tracking-wide text-foreground">
+            NEXA <span className="text-accent">WOMEN TECH</span>
+          </span>
+        </Link>
+
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                location.pathname === l.to ? "text-primary" : "text-muted-foreground"
+              }`}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            to="/auth"
+            className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
+          >
+            Únete
+          </Link>
+        </div>
+
+        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)}>
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden glass border-t border-border"
+          >
+            <div className="flex flex-col gap-4 p-6">
+              {links.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setOpen(false)}
+                  className={`text-sm font-medium ${
+                    location.pathname === l.to ? "text-primary" : "text-muted-foreground"
+                  }`}
+                >
+                  {l.label}
+                </Link>
+              ))}
+              <Link
+                to="/auth"
+                onClick={() => setOpen(false)}
+                className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
+              >
+                Únete
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </nav>
+  );
+};
+
+export default Navbar;
