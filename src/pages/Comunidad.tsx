@@ -91,6 +91,8 @@ const Comunidad = () => {
           </div>
         )}
 
+        {activeTab === "Terminal" && <CommunityTerminal />}
+
         {activeTab === "Directorio" && (
           <div className="mx-auto max-w-2xl">
             <div className="rounded-2xl bg-gradient-card border border-border p-8 text-center">
