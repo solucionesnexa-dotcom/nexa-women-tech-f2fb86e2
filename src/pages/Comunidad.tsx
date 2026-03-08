@@ -208,6 +208,7 @@ const Comunidad = () => {
           </div>
         )}
       </div>
+      <AIChatbot />
     </div>
   );
 };
