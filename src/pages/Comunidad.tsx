@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { MessageSquare, Heart, Send, Trophy, Filter, BookOpen, FlaskConical, Calendar, Users } from "lucide-react";
+import AIChatbot from "@/components/AIChatbot";
 
 const TABS = ["Feed", "Cohortes", "Recursos", "Directorio", "Eventos"] as const;
 type Tab = typeof TABS[number];
@@ -207,6 +208,7 @@ const Comunidad = () => {
           </div>
         )}
       </div>
+      <AIChatbot />
     </div>
   );
 };
