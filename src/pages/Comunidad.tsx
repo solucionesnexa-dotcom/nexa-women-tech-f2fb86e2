@@ -7,7 +7,7 @@ import CommunityTerminal from "@/components/community/CommunityTerminal";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery } from "@tanstack/react-query";
 
-const TABS = ["Feed", "Cohortes", "Recursos", "Directorio", "Eventos"] as const;
+const TABS = ["Feed", "Cohortes", "Recursos", "Terminal", "Directorio", "Eventos"] as const;
 type Tab = (typeof TABS)[number];
 
 const Comunidad = () => {
