@@ -277,7 +277,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
+      <footer className="py-8">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <img src={nexaLogo} alt="Nexa" className="h-6 w-6 rounded" />
