@@ -99,7 +99,6 @@ const Manifiesto = () => (
         viewport={{ once: true }}
         className="mx-auto max-w-3xl mt-16 text-center space-y-6"
       >
-        </p>
 
         <Link
           to="/precios"
