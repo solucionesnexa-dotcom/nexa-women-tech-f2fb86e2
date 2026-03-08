@@ -1,7 +1,15 @@
 import { useEffect, useState, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
-import { Upload, Trash2, FileText, ExternalLink } from "lucide-react";
+import { Upload, Trash2, FileText, ExternalLink, ChevronDown, ChevronRight } from "lucide-react";
+
+const SECTIONS = [
+  { value: "modulo-1", label: "Módulo 1 — Inmersión Cultural" },
+  { value: "modulo-2", label: "Módulo 2 — Bases de Autonomía Digital" },
+  { value: "modulo-3", label: "Módulo 3 — IA Aplicada al Negocio" },
+  { value: "modulo-4", label: "Módulo 4 — Despliegue y Escala" },
+  { value: "general", label: "General" },
+] as const;
 
 interface Resource {
   id: string;
@@ -9,6 +17,7 @@ interface Resource {
   description: string | null;
   type: string;
   file_url: string | null;
+  section: string;
   created_at: string;
 }
 
@@ -20,6 +29,8 @@ const AdminResources = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [type, setType] = useState("PDF");
+  const [section, setSection] = useState("modulo-1");
+  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set(SECTIONS.map((s) => s.value)));
   const fileRef = useRef<HTMLInputElement>(null);
 
   const fetchResources = async () => {
@@ -55,6 +66,7 @@ const AdminResources = () => {
       title: title.trim(),
       description: description.trim() || null,
       type,
+      section,
       file_url: fileUrl,
       uploaded_by: user.id,
     } as any);
@@ -72,6 +84,19 @@ const AdminResources = () => {
     fetchResources();
   };
 
+  const toggleSection = (value: string) => {
+    setExpandedSections((prev) => {
+      const next = new Set(prev);
+      next.has(value) ? next.delete(value) : next.add(value);
+      return next;
+    });
+  };
+
+  const groupedResources = SECTIONS.map((s) => ({
+    ...s,
+    items: resources.filter((r) => (r.section || "general") === s.value),
+  }));
+
   return (
     <div className="space-y-6">
       {/* Upload form */}
@@ -80,6 +105,15 @@ const AdminResources = () => {
           <Upload size={18} className="text-primary" /> Subir recurso
         </h3>
         <div className="space-y-3">
+          <select
+            value={section}
+            onChange={(e) => setSection(e.target.value)}
+            className="w-full rounded-lg bg-muted/50 border border-border px-4 py-2.5 text-sm text-foreground outline-none focus:border-primary"
+          >
+            {SECTIONS.map((s) => (
+              <option key={s.value} value={s.value}>{s.label}</option>
+            ))}
+          </select>
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -122,40 +156,54 @@ const AdminResources = () => {
         </div>
       </div>
 
-      {/* Resources list */}
-      <div className="rounded-2xl bg-gradient-card border border-border overflow-hidden">
-        <div className="p-4 border-b border-border">
-          <h2 className="font-display font-bold">Recursos ({resources.length})</h2>
-        </div>
+      {/* Resources grouped by section */}
+      <div className="space-y-4">
         {loading ? (
           <div className="p-8 text-center text-muted-foreground">Cargando...</div>
-        ) : resources.length === 0 ? (
-          <div className="p-8 text-center text-muted-foreground">No hay recursos todavía.</div>
         ) : (
-          <div className="divide-y divide-border/50">
-            {resources.map((res) => (
-              <div key={res.id} className="flex items-center justify-between px-4 py-3 hover:bg-muted/20">
-                <div className="flex items-center gap-3 min-w-0">
-                  <FileText size={16} className="shrink-0 text-accent" />
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium truncate">{res.title}</p>
-                    {res.description && <p className="text-xs text-muted-foreground truncate">{res.description}</p>}
+          groupedResources.map((group) => (
+            <div key={group.value} className="rounded-2xl bg-gradient-card border border-border overflow-hidden">
+              <button
+                onClick={() => toggleSection(group.value)}
+                className="w-full flex items-center justify-between p-4 border-b border-border hover:bg-muted/20 transition-colors"
+              >
+                <h2 className="font-display font-bold text-sm">
+                  {group.label} <span className="text-muted-foreground font-normal">({group.items.length})</span>
+                </h2>
+                {expandedSections.has(group.value) ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+              </button>
+              {expandedSections.has(group.value) && (
+                group.items.length === 0 ? (
+                  <div className="p-6 text-center text-xs text-muted-foreground">Sin recursos en esta sección.</div>
+                ) : (
+                  <div className="divide-y divide-border/50">
+                    {group.items.map((res) => (
+                      <div key={res.id} className="flex items-center justify-between px-4 py-3 hover:bg-muted/20">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <FileText size={16} className="shrink-0 text-accent" />
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium truncate">{res.title}</p>
+                            {res.description && <p className="text-xs text-muted-foreground truncate">{res.description}</p>}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2 shrink-0 ml-3">
+                          <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold text-muted-foreground">{res.type}</span>
+                          {res.file_url && (
+                            <a href={res.file_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
+                              <ExternalLink size={14} />
+                            </a>
+                          )}
+                          <button onClick={() => handleDelete(res.id)} className="text-destructive/60 hover:text-destructive">
+                            <Trash2 size={14} />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0 ml-3">
-                  <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold text-muted-foreground">{res.type}</span>
-                  {res.file_url && (
-                    <a href={res.file_url} target="_blank" rel="noopener noreferrer" className="text-primary hover:text-primary/80">
-                      <ExternalLink size={14} />
-                    </a>
-                  )}
-                  <button onClick={() => handleDelete(res.id)} className="text-destructive/60 hover:text-destructive">
-                    <Trash2 size={14} />
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+                )
+              )}
+            </div>
+          ))
         )}
       </div>
     </div>
