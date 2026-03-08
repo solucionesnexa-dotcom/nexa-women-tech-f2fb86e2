@@ -112,7 +112,7 @@ const Navbar = () => {
                   onClick={() => setOpen(false)}
                   className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
                 >
-                  Únete — 19€
+                  Únete
                 </Link>
               )}
             </div>
