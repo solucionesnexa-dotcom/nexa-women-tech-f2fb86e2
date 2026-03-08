@@ -143,10 +143,10 @@ const AIChatbot = () => {
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0, opacity: 0 }}
             onClick={() => setOpen(true)}
-            className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-transform hover:scale-110 hover:shadow-glow-primary"
+            className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-[0_0_30px_-5px_hsl(183_72%_56%/0.5)] transition-transform hover:scale-110"
             aria-label="Abrir chatbot IA"
           >
-            <Sparkles size={24} />
+            <Sparkles size={26} />
           </motion.button>
         )}
       </AnimatePresence>
