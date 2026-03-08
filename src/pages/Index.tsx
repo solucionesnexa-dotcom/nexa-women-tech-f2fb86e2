@@ -24,9 +24,7 @@ const Index = () => {
           <motion.div {...fadeUp}>
             <img src={nexaHeroLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-40 w-40 animate-float" />
             <h1 className="font-display text-4xl font-bold leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
-              Funda el movimiento de mujeres
-              <br />
-              que dominarán la <span className="text-gradient-hero">IA</span>
+              Funda el movimiento de mujeres que dominarán la <span className="text-gradient-hero">IA</span>
             </h1>
             <p className="mt-4 font-display text-lg font-semibold tracking-wide text-primary sm:text-xl">
               Empowered by AI. Empowering others.
