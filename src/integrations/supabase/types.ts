@@ -14,16 +14,185 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cohort_members: {
+        Row: {
+          cohort_id: string
+          id: string
+          joined_at: string
+          user_id: string
+        }
+        Insert: {
+          cohort_id: string
+          id?: string
+          joined_at?: string
+          user_id: string
+        }
+        Update: {
+          cohort_id?: string
+          id?: string
+          joined_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "cohort_members_cohort_id_fkey"
+            columns: ["cohort_id"]
+            isOneToOne: false
+            referencedRelation: "cohorts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      cohorts: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          max_members: number | null
+          name: string
+          start_date: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          max_members?: number | null
+          name: string
+          start_date?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          max_members?: number | null
+          name?: string
+          start_date?: string | null
+        }
+        Relationships: []
+      }
+      community_posts: {
+        Row: {
+          comments_count: number
+          content: string
+          created_at: string
+          id: string
+          is_challenge: boolean
+          likes_count: number
+          pillar: string
+          user_id: string
+        }
+        Insert: {
+          comments_count?: number
+          content: string
+          created_at?: string
+          id?: string
+          is_challenge?: boolean
+          likes_count?: number
+          pillar?: string
+          user_id: string
+        }
+        Update: {
+          comments_count?: number
+          content?: string
+          created_at?: string
+          id?: string
+          is_challenge?: boolean
+          likes_count?: number
+          pillar?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      payments: {
+        Row: {
+          amount: number
+          created_at: string
+          id: string
+          status: string
+          stripe_payment_id: string | null
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          id?: string
+          status?: string
+          stripe_payment_id?: string | null
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          id?: string
+          status?: string
+          stripe_payment_id?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          full_name: string | null
+          id: string
+          is_founder: boolean
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          is_founder?: boolean
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          is_founder?: boolean
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "alumna" | "fundadora" | "admin"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +319,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["alumna", "fundadora", "admin"],
+    },
   },
 } as const
