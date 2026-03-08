@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles, Users, BookOpen, FlaskConical, CheckCircle2, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import nexaLogo from "@/assets/nexa-logo.png";
+import nexaHeroLogo from "@/assets/nexa-hero-logo.png";
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
