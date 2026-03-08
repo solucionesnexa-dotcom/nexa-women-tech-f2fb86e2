@@ -12,6 +12,8 @@ import Precios from "./pages/Precios";
 import Auth from "./pages/Auth";
 import Manifiesto from "./pages/Manifiesto";
 import Admin from "./pages/Admin";
+import Privacidad from "./pages/Privacidad";
+import Cookies from "./pages/Cookies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +34,8 @@ const App = () => (
             <Route path="/auth" element={<Auth />} />
             <Route path="/manifiesto" element={<Manifiesto />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/privacidad" element={<Privacidad />} />
+            <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
