@@ -23,8 +23,8 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-3 px-4">
         <Link to="/" className="flex items-center gap-3">
           <img src={nexaLogo} alt="Nexa Women Tech" className="h-10 w-10 rounded-lg" />
-          <span className="font-display text-lg font-bold tracking-wide text-foreground">
-            NEXA <span className="text-accent">WOMEN TECH</span>
+          <span className="font-display text-lg font-bold tracking-wide">
+            <span className="text-primary">NEXA</span> <span className="text-accent">WOMEN TECH</span>
           </span>
         </Link>
 
