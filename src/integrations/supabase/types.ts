@@ -166,6 +166,7 @@ export type Database = {
           description: string | null
           file_url: string | null
           id: string
+          section: string
           title: string
           type: string
           uploaded_by: string
@@ -175,6 +176,7 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          section?: string
           title: string
           type?: string
           uploaded_by: string
@@ -184,6 +186,7 @@ export type Database = {
           description?: string | null
           file_url?: string | null
           id?: string
+          section?: string
           title?: string
           type?: string
           uploaded_by?: string
