@@ -72,7 +72,7 @@ const Index = () => {
       </section>
 
       {/* Problem */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -100,7 +100,7 @@ const Index = () => {
       </section>
 
       {/* How the community works */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -161,7 +161,7 @@ const Index = () => {
       </section>
 
       {/* Member Journey */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -227,7 +227,7 @@ const Index = () => {
       </section>
 
       {/* Manifesto Quote */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4">
           <motion.blockquote
             initial={{ opacity: 0 }}
@@ -252,7 +252,7 @@ const Index = () => {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border py-24">
+      <section className="py-24">
         <div className="container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -277,7 +277,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-8">
+      <footer className="py-8">
         <div className="container mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <img src={nexaLogo} alt="Nexa" className="h-6 w-6 rounded" />
