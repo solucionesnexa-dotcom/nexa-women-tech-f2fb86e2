@@ -45,7 +45,7 @@
     --sidebar-border: 253 25% 19%;
     --sidebar-ring: 183 72% 56%;
 
-    --gradient-hero: linear-gradient(135deg, hsl(175 70% 42%), hsl(350 75% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(183 72% 56%), hsl(350 75% 55%));
     --gradient-card: linear-gradient(145deg, hsl(253 50% 13%), hsl(253 40% 17%));
     --gradient-accent: linear-gradient(135deg, hsl(40 90% 55%), hsl(350 75% 55%));
     --gradient-subtle: linear-gradient(135deg, hsl(253 50% 13%), hsl(253 60% 15%));
