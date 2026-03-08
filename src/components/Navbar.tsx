@@ -59,12 +59,20 @@ const Navbar = () => {
               Salir
             </button>
           ) : (
-            <Link
-              to="/precios"
-              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
-            >
-              Únete
-            </Link>
+            <div className="flex items-center gap-3">
+              <Link
+                to="/auth"
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+              >
+                Iniciar sesión
+              </Link>
+              <Link
+                to="/precios"
+                className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
+              >
+                Únete
+              </Link>
+            </div>
           )}
         </div>
 
