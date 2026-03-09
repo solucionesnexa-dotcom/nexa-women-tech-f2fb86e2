@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
-import { MessageSquare, Lightbulb, FolderOpen, Share2 } from "lucide-react";
+import { MessageSquare, Code2, ShieldAlert } from "lucide-react";
 
 const features = [
-  { icon: MessageSquare, title: "Presentaciones", desc: "Conoce a las demás miembros y comparte tu historia." },
-  { icon: Lightbulb, title: "Preguntas", desc: "Resuelve dudas con la ayuda de la comunidad." },
-  { icon: FolderOpen, title: "Proyectos", desc: "Comparte lo que estás construyendo y recibe feedback." },
-  { icon: Share2, title: "Recursos", desc: "Descubre y comparte herramientas, tutoriales y plantillas." },
+  {
+    icon: MessageSquare,
+    title: "Conversación Real",
+    desc: "Espacios para denunciar barreras sistémicas y miedos reales. Sin tabúes.",
+  },
+  {
+    icon: Code2,
+    title: "Build in Public",
+    desc: "Compartimos experimentos, errores y avances técnicos en abierto.",
+  },
+  {
+    icon: ShieldAlert,
+    title: "Estrategia Anti-pasividad",
+    desc: "Aquí se penaliza el consumo pasivo; la evolución requiere entregas tangibles.",
+  },
 ];
 
 const CommunitySection = () => (
@@ -19,15 +30,15 @@ const CommunitySection = () => (
       >
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Comunidad</p>
         <h2 className="font-display text-3xl font-bold md:text-4xl">
-          Conecta con mujeres que están{" "}
-          <span className="text-gradient-hero">rediseñando su carrera</span>
+          El Hub de las{" "}
+          <span className="text-gradient-hero">Constructoras</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Un espacio privado para compartir, aprender y crecer juntas.
+          No buscamos espectadoras, buscamos arquitectas de flujos de trabajo.
         </p>
       </motion.div>
 
-      <div className="grid gap-4 sm:grid-cols-2 max-w-3xl mx-auto">
+      <div className="grid gap-4 md:grid-cols-3 max-w-4xl mx-auto">
         {features.map((item, i) => (
           <motion.div
             key={item.title}
@@ -35,7 +46,7 @@ const CommunitySection = () => (
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.08 }}
-            className="flex items-start gap-4 rounded-2xl bg-gradient-card border border-border p-6 hover:border-primary/30 transition-all"
+            className="flex flex-col items-start gap-4 rounded-2xl bg-gradient-card border border-border p-6 hover:border-primary/30 transition-all"
           >
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
               <item.icon size={20} />
