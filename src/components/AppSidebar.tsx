@@ -20,6 +20,7 @@ const items = [
   { title: "Comunidad", url: "/comunidad", icon: Users },
   { title: "Labs", url: "/labs", icon: FlaskConical },
   { title: "AI Toolkit", url: "/ai-toolkit", icon: Bot },
+  { title: "Career OS", url: "/career-os", icon: Briefcase },
   { title: "Perfil", url: "/perfil", icon: User },
 ];
 
