@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "description": "Configuración de rutas para Cloudflare Pages - SPA (single page application)",
+  "include": ["/*"],
+  "exclude": [
+    "/assets/*",
+    "/robots.txt",
+    "/favicon.ico",
+    "/manifest.json",
+    "/*.css",
+    "/*.js",
+    "/*.woff2"
+  ],
+  "rules": [
+    {
+      "type": "CompiledContentType",
+      "include": ["/*"],
+      "exclude": [
+        "/assets/*",
+        "/robots.txt",
+        "/favicon.ico"
+      ],
+      "fallthrough": true
+    },
+    {
+      "type": "Rewrite",
+      "include": ["/*"],
+      "exclude": [
+        "/assets/*",
+        "/robots.txt",
+        "/favicon.ico",
+        "/*.css",
+        "/*.js",
+        "/*.woff2"
+      ],
+      "new_path": "/index.html"
+    }
+  ]
+}
