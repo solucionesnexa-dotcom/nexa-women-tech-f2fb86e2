@@ -42,7 +42,7 @@ const HeroSection = () => (
           <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
         </Link>
         <p className="mt-4 text-sm text-muted-foreground">
-          Solo 20 cupos · Precio de reserva que se descuenta de tu primera cuota
+          Acceso anticipado · comunidad fundadora · plazas limitadas
         </p>
       </motion.div>
 
