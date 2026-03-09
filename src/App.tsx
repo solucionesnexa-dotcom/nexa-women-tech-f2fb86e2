@@ -10,7 +10,6 @@ import AdminGuard from "@/components/AdminGuard";
 
 import Index from "./pages/Index";
 import Comunidad from "./pages/Comunidad";
-import Ruta from "./pages/Ruta";
 import Precios from "./pages/Precios";
 import Auth from "./pages/Auth";
 import Manifiesto from "./pages/Manifiesto";
@@ -20,10 +19,12 @@ import Cookies from "./pages/Cookies";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
-import Labs from "./pages/Labs";
 import AIToolkit from "./pages/AIToolkit";
 import Perfil from "./pages/Perfil";
-import CareerOS from "./pages/CareerOS";
+import RutaAutomatiza from "./pages/RutaAutomatiza";
+import RutaClaridad from "./pages/RutaClaridad";
+import RutaPro from "./pages/RutaPro";
+import MiProgreso from "./pages/MiProgreso";
 
 const queryClient = new QueryClient();
 
@@ -50,11 +51,12 @@ const App = () => (
             <Route element={<PrivateLayout />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/comunidad" element={<Comunidad />} />
-              <Route path="/ruta" element={<Ruta />} />
-              <Route path="/labs" element={<Labs />} />
+              <Route path="/mi-progreso" element={<MiProgreso />} />
+              <Route path="/ruta-automatiza" element={<RutaAutomatiza />} />
+              <Route path="/ruta-claridad" element={<RutaClaridad />} />
+              <Route path="/ruta-pro" element={<RutaPro />} />
               <Route path="/ai-toolkit" element={<AIToolkit />} />
               <Route path="/perfil" element={<Perfil />} />
-              <Route path="/career-os" element={<CareerOS />} />
               <Route path="/admin" element={<AdminGuard><Admin /></AdminGuard>} />
             </Route>
 
