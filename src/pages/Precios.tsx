@@ -1,96 +1,232 @@
 import { motion } from "framer-motion";
-import { Check, ArrowRight, Shield, ShieldCheck, Sparkles } from "lucide-react";
+import { Check, ArrowRight, Shield, ShieldCheck, Sparkles, Crown, Zap, Compass, Rocket } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
-const incluye = [
-  "Acceso a la comunidad de mujeres fundadoras",
-  "Cohortes de aprendizaje práctico con IA",
-  "Retos semanales con accountability real",
-  "Sesiones en directo de IA aplicada",
-  "Acceso a Nexa Labs y recursos de IA",
-  "Badge de Fundadora permanente",
-  "Acceso anticipado a nuevas funcionalidades",
-  "Soporte prioritario de la comunidad",
+const PLANS = [
+  {
+    id: "free",
+    name: "Acceso Gratuito",
+    subtitle: "Comienza tu viaje",
+    price: "0€",
+    period: "",
+    description: "Acceso básico a la comunidad y recursos fundamentales",
+    icon: Shield,
+    color: "text-muted-foreground",
+    bgColor: "bg-muted/30",
+    features: [
+      "Acceso a la comunidad básica",
+      "Recursos gratuitos de automatización",
+      "Sesiones grabadas públicas",
+      "Acceso limitado a biblioteca",
+    ],
+    cta: "Comenzar Gratis",
+    ctaLink: "/auth",
+    popular: false,
+  },
+  {
+    id: "premium",
+    name: "Nivel 1 - Premium",
+    subtitle: "Acelera tu crecimiento",
+    price: "29€",
+    period: "/mes",
+    description: "Acceso completo a contenido premium y retos avanzados",
+    icon: Crown,
+    color: "text-primary",
+    bgColor: "bg-primary/5 border-primary/40",
+    features: [
+      "Todo lo del plan gratuito",
+      "Acceso completo a biblioteca premium",
+      "Retos semanales avanzados",
+      "Sesiones en vivo exclusivas",
+      "Soporte prioritario",
+      "Recursos descargables premium",
+      "Badge de miembro premium",
+    ],
+    cta: "Upgrade a Premium",
+    ctaLink: "/auth",
+    popular: true,
+  },
+  {
+    id: "pro",
+    name: "Ruta PRO",
+    subtitle: "Construye tu negocio",
+    price: "49€",
+    period: "/mes",
+    description: "Para quienes quieren monetizar su conocimiento con IA",
+    icon: Rocket,
+    color: "text-secondary",
+    bgColor: "bg-secondary/5 border-secondary/40",
+    features: [
+      "Todo lo del plan Premium",
+      "Estrategias de monetización con IA",
+      "Consultoría grupal mensual",
+      "Acceso a cohortes PRO exclusivas",
+      "Plantillas de negocio avanzadas",
+      "Networking con empresarias tech",
+      "Badge de Ruta PRO",
+      "Acceso anticipado a nuevas features",
+    ],
+    cta: "Comenzar Ruta PRO",
+    ctaLink: "/auth",
+    popular: false,
+  },
+];
+
+const ROUTES = [
+  {
+    name: "Ruta Automatiza",
+    icon: Zap,
+    description: "Domina la automatización con IA",
+    included: true,
+  },
+  {
+    name: "Ruta Claridad",
+    icon: Compass,
+    description: "Encuentra tu camino digital",
+    included: true,
+  },
+  {
+    name: "Ruta Profesional",
+    icon: Rocket,
+    description: "Convierte conocimiento en ingresos",
+    included: "pro",
+  },
 ];
 
 const Precios = () => (
   <div className="min-h-screen bg-background pt-24 pb-16">
     <div className="container mx-auto px-4">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-16 text-center">
-        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">Suscripción Fundadora</p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mb-16 text-center"
+      >
+        <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
+          Planes de Membresía
+        </p>
         <h1 className="font-display text-3xl font-bold md:text-4xl">
-          Todo lo que incluye tu <span className="text-gradient-hero">plaza fundadora</span>
+          Elige tu <span className="text-gradient-hero">camino digital</span>
         </h1>
-        <p className="mt-3 text-muted-foreground">Plazas limitadas · acceso anticipado a todo.</p>
+        <p className="mt-3 text-muted-foreground">
+          Desde principiante hasta empresaria tech. Todos los niveles incluyen acceso a nuestra comunidad.
+        </p>
       </motion.div>
 
+      {/* Routes Overview */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15 }}
-        className="relative mx-auto max-w-lg rounded-2xl border border-primary/40 shadow-glow-primary bg-gradient-card p-10"
+        transition={{ delay: 0.1 }}
+        className="mb-12"
       >
-        <div className="mb-6 -mt-2 flex justify-center">
-          <span className="rounded-full border border-primary/40 bg-muted/50 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-            Cohorte Fundadora
-          </span>
-        </div>
-
-        <div className="mb-6 flex items-center gap-2">
-          <Shield size={20} className="text-primary" />
-          <h3 className="font-display text-xl font-bold">Founder Access</h3>
-        </div>
-
-        {/* Pricing breakdown */}
-        <div className="mb-8 space-y-4 rounded-xl border border-border/50 bg-muted/30 p-5">
-          <div className="flex items-baseline justify-between">
-            <div>
-              <p className="text-sm font-semibold text-foreground">Reserva tu plaza</p>
-              <p className="text-xs text-muted-foreground">Pago único · se descuenta de tu 1ª cuota</p>
-            </div>
-            <span className="font-display text-3xl font-bold">19€</span>
-          </div>
-
-          <div className="border-t border-border/50" />
-
-          <div className="flex items-baseline justify-between">
-            <div>
-              <p className="text-sm font-semibold text-foreground">Suscripción mensual</p>
-              <p className="text-xs text-muted-foreground">Compromiso mínimo de 3 meses</p>
-            </div>
-            <div className="text-right">
-              <span className="font-display text-3xl font-bold">29€</span>
-              <span className="text-sm text-muted-foreground">/mes</span>
-            </div>
-          </div>
-        </div>
-
-        {/* What's included */}
-        <div className="mb-2 flex items-center gap-2">
-          <Sparkles size={16} className="text-primary" />
-          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Qué incluye</p>
-        </div>
-        <ul className="mb-8 space-y-3">
-          {incluye.map((f) => (
-            <li key={f} className="flex items-start gap-2 text-sm">
-              <Check size={16} className="mt-0.5 shrink-0 text-primary" />
-              <span className="text-foreground/80">{f}</span>
-            </li>
+        <h2 className="text-center text-xl font-semibold mb-8">Rutas Disponibles</h2>
+        <div className="grid gap-4 md:grid-cols-3 max-w-4xl mx-auto">
+          {ROUTES.map((route, index) => (
+            <motion.div
+              key={route.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 + index * 0.1 }}
+            >
+              <Card className={`text-center ${route.included === "pro" ? "border-secondary/40" : ""}`}>
+                <CardContent className="pt-6">
+                  <route.icon className={`h-8 w-8 mx-auto mb-3 ${route.included === "pro" ? "text-secondary" : "text-primary"}`} />
+                  <h3 className="font-semibold mb-2">{route.name}</h3>
+                  <p className="text-sm text-muted-foreground mb-3">{route.description}</p>
+                  {route.included === "pro" && (
+                    <Badge variant="secondary">Ruta PRO</Badge>
+                  )}
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </ul>
-
-        <Link
-          to="/auth"
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[hsl(183,72%,56%)] px-6 py-4 font-display text-sm font-bold text-white transition-all hover:shadow-glow-primary hover:scale-105"
-        >
-          Reservar mi plaza — 19€
-          <ArrowRight size={14} />
-        </Link>
-
-        <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
-          <ShieldCheck size={14} className="text-primary" />
-          <span>Pago seguro · Los 19€ se descuentan de tu primera cuota de 29€/mes</span>
         </div>
+      </motion.div>
+
+      {/* Pricing Plans */}
+      <div className="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+        {PLANS.map((plan, index) => (
+          <motion.div
+            key={plan.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 + index * 0.1 }}
+            className="relative"
+          >
+            <Card className={`h-full ${plan.bgColor} ${plan.popular ? "ring-2 ring-primary/40 shadow-lg" : ""}`}>
+              {plan.popular && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <Badge className="bg-primary text-primary-foreground">Más Popular</Badge>
+                </div>
+              )}
+
+              <CardHeader className="text-center pb-4">
+                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full ${plan.bgColor} mb-4`}>
+                  <plan.icon className={`h-6 w-6 ${plan.color}`} />
+                </div>
+                <CardTitle className="text-xl">{plan.name}</CardTitle>
+                <p className="text-sm text-muted-foreground">{plan.subtitle}</p>
+                <div className="mt-4">
+                  <span className="text-3xl font-bold">{plan.price}</span>
+                  <span className="text-muted-foreground">{plan.period}</span>
+                </div>
+                <p className="text-sm text-muted-foreground mt-2">{plan.description}</p>
+              </CardHeader>
+
+              <CardContent>
+                <ul className="space-y-3 mb-6">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm">
+                      <Check size={16} className="mt-0.5 shrink-0 text-primary" />
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <Button
+                  asChild
+                  className={`w-full ${plan.popular ? "bg-primary hover:bg-primary/90" : ""}`}
+                  variant={plan.popular ? "default" : "outline"}
+                >
+                  <Link to={plan.ctaLink}>
+                    {plan.cta}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Legacy Founder Access */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        className="mt-16 max-w-lg mx-auto"
+      >
+        <Card className="border-primary/40 shadow-glow-primary bg-gradient-card">
+          <CardContent className="p-6 text-center">
+            <div className="mb-4">
+              <Sparkles className="h-8 w-8 text-primary mx-auto mb-2" />
+              <h3 className="font-semibold text-lg">Acceso Fundador (Legacy)</h3>
+              <p className="text-sm text-muted-foreground">
+                Para las primeras miembros que creyeron en Nexa
+              </p>
+            </div>
+            <div className="text-center mb-4">
+              <p className="text-2xl font-bold">19€</p>
+              <p className="text-xs text-muted-foreground">reserva + 29€/mes</p>
+            </div>
+            <Button asChild variant="outline" className="w-full">
+              <Link to="/auth">Reservar Plaza Fundadora</Link>
+            </Button>
+          </CardContent>
+        </Card>
       </motion.div>
     </div>
   </div>

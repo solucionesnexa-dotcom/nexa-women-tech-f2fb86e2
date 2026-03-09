@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut } from "lucide-react";
+import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut, BookOpen, Trophy, Calendar } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
@@ -17,6 +17,9 @@ import {
 const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Mi Progreso", url: "/mi-progreso", icon: TrendingUp },
+  { title: "Biblioteca", url: "/biblioteca", icon: BookOpen },
+  { title: "Retos", url: "/retos", icon: Trophy },
+  { title: "Sesiones", url: "/sesiones", icon: Calendar },
   { title: "Ruta Automatiza", url: "/ruta-automatiza", icon: Zap },
   { title: "Ruta Claridad", url: "/ruta-claridad", icon: Compass },
   { title: "Ruta Profesional", url: "/ruta-pro", icon: Rocket },

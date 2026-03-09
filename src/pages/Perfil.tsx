@@ -1,6 +1,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { motion } from "framer-motion";
-import { User, Camera, Loader2, CreditCard } from "lucide-react";
+import { User, Camera, Loader2, CreditCard, Zap, Compass, Rocket, TrendingUp, BookOpen, Trophy, Target } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useToast } from "@/hooks/use-toast";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 
 const Perfil = () => {
   const { user, isFounder } = useAuth();
@@ -141,6 +142,105 @@ const Perfil = () => {
           </CardHeader>
           <CardContent>
             <Textarea value={bio} onChange={(e) => setBio(e.target.value)} placeholder="Cuéntanos sobre ti..." rows={3} />
+          </CardContent>
+        </Card>
+
+        {/* Ruta Actual */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <Target size={16} />
+              Tu Ruta Actual
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <Zap className="h-5 w-5 text-primary" />
+                <div>
+                  <p className="font-medium">Ruta Automatiza</p>
+                  <p className="text-sm text-muted-foreground">Constructor Inicial</p>
+                </div>
+              </div>
+              <Badge variant="secondary">Nivel 1</Badge>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Progreso */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <TrendingUp size={16} />
+              Tu Progreso
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <div className="flex justify-between text-sm mb-2">
+                <span>Ruta Automatiza</span>
+                <span>65%</span>
+              </div>
+              <Progress value={65} className="h-2" />
+            </div>
+            <div className="grid grid-cols-3 gap-4 text-center">
+              <div>
+                <p className="text-2xl font-bold text-primary">12</p>
+                <p className="text-xs text-muted-foreground">Lecciones completadas</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-secondary">450</p>
+                <p className="text-xs text-muted-foreground">Puntos ganados</p>
+              </div>
+              <div>
+                <p className="text-2xl font-bold text-accent">3</p>
+                <p className="text-xs text-muted-foreground">Retos completados</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Recursos Desbloqueados */}
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-base flex items-center gap-2">
+              <BookOpen size={16} />
+              Recursos Desbloqueados
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-3">
+              <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="h-5 w-5 text-primary" />
+                  <div>
+                    <p className="font-medium">Prompts para Automatización</p>
+                    <p className="text-sm text-muted-foreground">Colección de prompts probados</p>
+                  </div>
+                </div>
+                <Badge variant="outline">Descargado</Badge>
+              </div>
+              <div className="flex items-center justify-between p-3 border rounded-lg">
+                <div className="flex items-center gap-3">
+                  <Trophy className="h-5 w-5 text-secondary" />
+                  <div>
+                    <p className="font-medium">Reto: Primera Automatización</p>
+                    <p className="text-sm text-muted-foreground">Completado - 100 puntos</p>
+                  </div>
+                </div>
+                <Badge variant="default">Completado</Badge>
+              </div>
+              <div className="flex items-center justify-between p-3 border rounded-lg opacity-60">
+                <div className="flex items-center gap-3">
+                  <BookOpen className="h-5 w-5 text-muted-foreground" />
+                  <div>
+                    <p className="font-medium">JSONs de Flujos de Trabajo</p>
+                    <p className="text-sm text-muted-foreground">Plantillas JSON avanzadas</p>
+                  </div>
+                </div>
+                <Badge variant="secondary">Premium</Badge>
+              </div>
+            </div>
           </CardContent>
         </Card>
 

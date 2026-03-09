@@ -25,6 +25,9 @@ import RutaAutomatiza from "./pages/RutaAutomatiza";
 import RutaClaridad from "./pages/RutaClaridad";
 import RutaPro from "./pages/RutaPro";
 import MiProgreso from "./pages/MiProgreso";
+import Biblioteca from "./pages/Biblioteca";
+import Retos from "./pages/Retos";
+import Sesiones from "./pages/Sesiones";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +55,9 @@ const App = () => (
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/comunidad" element={<Comunidad />} />
               <Route path="/mi-progreso" element={<MiProgreso />} />
+              <Route path="/biblioteca" element={<Biblioteca />} />
+              <Route path="/retos" element={<Retos />} />
+              <Route path="/sesiones" element={<Sesiones />} />
               <Route path="/ruta-automatiza" element={<RutaAutomatiza />} />
               <Route path="/ruta-claridad" element={<RutaClaridad />} />
               <Route path="/ruta-pro" element={<RutaPro />} />
