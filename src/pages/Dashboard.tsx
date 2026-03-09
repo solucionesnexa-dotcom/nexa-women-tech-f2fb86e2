@@ -4,12 +4,62 @@ import { BookOpen, Calendar, MessageSquare, Zap, FlaskConical } from "lucide-rea
 import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { supabase } from "@/integrations/supabase/client";
+import { useQuery } from "@tanstack/react-query";
+import { Skeleton } from "@/components/ui/skeleton";
+import { format } from "date-fns";
+import { es } from "date-fns/locale";
 
 const Dashboard = () => {
   const { user } = useAuth();
-  
-  // Extract first name or use a default
   const firstName = user?.user_metadata?.full_name?.split(" ")[0] || "Soberana";
+
+  // Latest 3 community posts with profile info
+  const { data: latestPosts } = useQuery({
+    queryKey: ["dashboard-posts"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("community_posts")
+        .select("id, content, pillar, created_at, user_id, profiles!inner(full_name)")
+        .order("created_at", { ascending: false })
+        .limit(3);
+      return data ?? [];
+    },
+  });
+
+  // Next upcoming cohort
+  const { data: nextEvent } = useQuery({
+    queryKey: ["dashboard-next-event"],
+    queryFn: async () => {
+      const today = new Date().toISOString().split("T")[0];
+      const { data } = await supabase
+        .from("cohorts")
+        .select("name, start_date, description")
+        .gte("start_date", today)
+        .order("start_date", { ascending: true })
+        .limit(1);
+      return data?.[0] ?? null;
+    },
+  });
+
+  // Today's activity stats
+  const { data: todayStats } = useQuery({
+    queryKey: ["dashboard-today-stats"],
+    queryFn: async () => {
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const { count: postsToday } = await supabase
+        .from("community_posts")
+        .select("id", { count: "exact", head: true })
+        .gte("created_at", todayStart.toISOString());
+      const { count: challengesToday } = await supabase
+        .from("community_posts")
+        .select("id", { count: "exact", head: true })
+        .gte("created_at", todayStart.toISOString())
+        .eq("is_challenge", true);
+      return { posts: postsToday ?? 0, challenges: challengesToday ?? 0 };
+    },
+  });
 
   return (
     <div className="container mx-auto p-6 max-w-6xl">
@@ -56,10 +106,23 @@ const Dashboard = () => {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="rounded-lg bg-muted/50 p-3">
-                <p className="font-medium text-sm">Nexa Lab: Automatiza tu agenda</p>
-                <p className="text-xs text-muted-foreground mt-1">Jueves, 18:00h (CET)</p>
-              </div>
+              {nextEvent ? (
+                <div className="rounded-lg bg-muted/50 p-3">
+                  <p className="font-medium text-sm">{nextEvent.name}</p>
+                  {nextEvent.description && (
+                    <p className="text-xs text-muted-foreground mt-1">{nextEvent.description}</p>
+                  )}
+                  {nextEvent.start_date && (
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {format(new Date(nextEvent.start_date), "EEEE, d 'de' MMMM", { locale: es })}
+                    </p>
+                  )}
+                </div>
+              ) : (
+                <div className="rounded-lg bg-muted/50 p-3">
+                  <p className="text-sm text-muted-foreground">No hay eventos próximos.</p>
+                </div>
+              )}
               <Link to="/comunidad" className="text-xs text-accent hover:underline mt-3 inline-block">
                 Ver calendario →
               </Link>
@@ -78,14 +141,21 @@ const Dashboard = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary mt-1.5 shrink-0" />
-                  <p className="text-sm">Nueva plantilla de Notion compartida en Recursos.</p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary mt-1.5 shrink-0" />
-                  <p className="text-sm">3 nuevos retos completados hoy.</p>
-                </div>
+                {latestPosts && latestPosts.length > 0 ? (
+                  latestPosts.map((post: any) => (
+                    <div key={post.id} className="flex items-start gap-2">
+                      <div className="w-2 h-2 rounded-full bg-secondary mt-1.5 shrink-0" />
+                      <p className="text-sm line-clamp-2">{post.content}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-sm text-muted-foreground">Sin actividad reciente.</p>
+                )}
+                {todayStats && (
+                  <p className="text-xs text-muted-foreground">
+                    Hoy: {todayStats.posts} posts · {todayStats.challenges} retos
+                  </p>
+                )}
               </div>
               <Link to="/comunidad" className="text-xs text-secondary hover:underline mt-4 inline-block">
                 Ir a la comunidad →
@@ -105,7 +175,7 @@ const Dashboard = () => {
           </Link>
           <Link to="/labs" className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:bg-muted transition-colors">
             <FlaskConical size={20} className="text-accent" />
-            <span className="font-medium text-sm">Labs Anteriores</span>
+            <span className="font-medium text-sm">Labs</span>
           </Link>
         </div>
       </motion.div>
