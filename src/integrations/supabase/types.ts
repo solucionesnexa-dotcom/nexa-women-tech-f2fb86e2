@@ -103,6 +103,36 @@ export type Database = {
         }
         Relationships: []
       }
+      labs: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          is_past: boolean
+          lab_date: string | null
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_past?: boolean
+          lab_date?: string | null
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_past?: boolean
+          lab_date?: string | null
+          title?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
       payments: {
         Row: {
           amount: number
@@ -133,6 +163,7 @@ export type Database = {
       profiles: {
         Row: {
           avatar_url: string | null
+          bio: string | null
           created_at: string
           full_name: string | null
           id: string
@@ -142,6 +173,7 @@ export type Database = {
         }
         Insert: {
           avatar_url?: string | null
+          bio?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
@@ -151,6 +183,7 @@ export type Database = {
         }
         Update: {
           avatar_url?: string | null
+          bio?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
