@@ -22,6 +22,7 @@ import Dashboard from "./pages/Dashboard";
 import Labs from "./pages/Labs";
 import AIToolkit from "./pages/AIToolkit";
 import Perfil from "./pages/Perfil";
+import CareerOS from "./pages/CareerOS";
 
 const queryClient = new QueryClient();
 
