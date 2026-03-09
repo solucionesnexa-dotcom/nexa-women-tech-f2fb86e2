@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "build.bat",
     "build:dev": "vite build --mode development",
     "build:cf": "vite build",
-    "deploy:cf": "npm run build && npx wrangler pages deploy dist",
+    "deploy:cf": "build.bat && npx wrangler pages deploy dist",
     "preview:cf": "npm run build && npx wrangler pages dev dist",
     "lint": "eslint .",
     "preview": "vite preview",
