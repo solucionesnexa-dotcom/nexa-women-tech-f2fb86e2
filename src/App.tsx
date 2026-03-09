@@ -17,6 +17,7 @@ import Manifiesto from "./pages/Manifiesto";
 import Admin from "./pages/Admin";
 import Privacidad from "./pages/Privacidad";
 import Cookies from "./pages/Cookies";
+import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import Dashboard from "./pages/Dashboard";
 import Labs from "./pages/Labs";
