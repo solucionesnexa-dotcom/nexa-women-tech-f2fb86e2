@@ -24,7 +24,7 @@ const ProblemSection = () => (
 
         <div className="mt-10 space-y-4 text-left max-w-2xl mx-auto">
           {[
-            "Basta de explotación analógica disfrazada de "cultura de empresa".",
+            "Basta de explotación analógica disfrazada de «cultura de empresa».",
             "Basta de burocracia manual que drena el talento femenino.",
           ].map((text) => (
             <motion.div
