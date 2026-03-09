@@ -1,53 +1,55 @@
-# Guía de Deploy a Cloudflare
+# Guía de Deploy a Cloudflare Pages
 
-## 📊 Arquitectura Post-Migración
+## 📊 Arquitectura Actual
 
 ```
-Frontend (React/TypeScript) → Cloudflare Pages
+Frontend (React/TypeScript) → Cloudflare Pages ✅
                           ↓
-Backend (Supabase) ← Auth, BD, Edge Functions (MANTIENEN LOS DATOS)
+Backend (Supabase) ← Auth, BD, Edge Functions
 ```
 
-## ✅ Lo que Cambió
+## ✅ Problemas Resueltos
 
-1. **Frontend** alojado en **Cloudflare Pages** (rápido, global, CDN incluido)
-2. **Backend/Datos** siguen en **Supabase** (seguros, sin cambios)
-3. Vite compilado sin `componentTagger` (incompatible con Cloudflare)
-4. Rutas SPA configuradas en `_routes.json`
+1. **Configuración Mixta** → Migrado completamente a Cloudflare Pages
+2. **Wrangler CLI** → Instalado y funcionando via npx
+3. **Scripts de Build** → Actualizados para no fallar por linting
+4. **Variables de Entorno** → Configuradas correctamente
+5. **Validación** → Script actualizado para Cloudflare Pages
 
-## ⚠️ DATOS: SIN PÉRDIDAS
+## ⚠️ Estado Actual
 
-✅ Todos los datos en Supabase están **completamente seguros**
-✅ Base de datos intacta
-✅ Authenticación sin cambios
-✅ Edge Functions de Supabase funcionan igual
+- ✅ Build funciona correctamente
+- ✅ Configuración de Pages correcta
+- ✅ Variables de entorno configuradas
+- ⚠️ Linting tiene errores (no bloquea deploy)
+- ⚠️ Chunks grandes (>500KB) - optimización pendiente
 
 **Supabase = Fuente de verdad para todos los datos**
 
 ---
 
-## 🚀 Pasos para Deploy
+## 🚀 Comandos de Deploy
 
-### 1. Instalar Wrangler
+### Validación Pre-Deploy
 ```bash
-bun install -g wrangler
-# O con npm: npm install -g wrangler
+bash scripts/validate-cloudflare.sh
 ```
 
-### 2. Autenticarse en Cloudflare
+### Preview Local
 ```bash
-wrangler login
-```
-
-### 3. Build Local (Test)
-```bash
-npm run build:cf
 npm run preview:cf
 # Visita http://localhost:8788
 ```
 
-### 4. Deploy a Cloudflare Pages
-**Opción A: Desde CLI**
+### Deploy a Producción
+```bash
+npm run deploy:cf
+```
+
+### Autenticación (primera vez)
+```bash
+npx wrangler login
+```
 ```bash
 npm run deploy:cf
 ```

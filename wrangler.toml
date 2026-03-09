@@ -1,36 +1,9 @@
 name = "nexa-women-tech"
-main = "src/index.ts"
-compatibility_date = "2025-03-09"
-compatibility_flags = ["nodejs_compat"]
+compatibility_date = "2024-01-01"
 
-# Environment de desarrollo
-[env.development]
-routes = [
-  { pattern = "*.dev.nexa.local/*", zone_name = "nexa.local" }
-]
+# Configuración para Cloudflare Pages
+pages_build_output_dir = "dist"
 
-# Environment de producción
-[env.production]
-routes = [
-  { pattern = "*.nexa.com/*", zone_name = "nexa.com" }
-]
-
-# Configuración de API/Supabase
-[env.production]
-vars = { ENVIRONMENT = "production" }
-
-[env.development]
-vars = { ENVIRONMENT = "development" }
-
-# Bindings (si necesitas R2, KV, D1, etc.)
-# [[kv_namespaces]]
-# binding = "KV_STORE"
-
-# Configuración para SPA (single page application)
-[build]
-command = "bun install && bun run build"
-cwd = "./"
-watch_paths = ["src/**/*"]
-
-[build.upload]
-format = "service-worker"
+# Variables de entorno para producción
+[vars]
+NODE_VERSION = "18"
