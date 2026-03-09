@@ -43,6 +43,7 @@ const App = () => (
               <Route path="/manifiesto" element={<Manifiesto />} />
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/cookies" element={<Cookies />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
             </Route>
 
             {/* Rutas Privadas */}
