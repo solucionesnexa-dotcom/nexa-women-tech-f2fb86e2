@@ -28,6 +28,7 @@ import MiProgreso from "./pages/MiProgreso";
 import Biblioteca from "./pages/Biblioteca";
 import Retos from "./pages/Retos";
 import Sesiones from "./pages/Sesiones";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,8 @@ const App = () => (
 
             <Route path="*" element={<NotFound />} />
           </Routes>
+
+          <WhatsAppButton />
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>

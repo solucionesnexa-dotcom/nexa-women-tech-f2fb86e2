@@ -25,7 +25,7 @@ const Auth = () => {
     try {
       const { error } = await signIn(email, password);
       if (error) throw error;
-      navigate("/comunidad");
+      navigate("/dashboard");
     } catch (error: any) {
       toast({
         title: "Error",

@@ -20,7 +20,7 @@ const CtaSection = () => (
         </p>
         <Link
           to="/precios"
-          className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-primary px-10 py-5 font-display text-base font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
+          className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-5 font-display text-base font-bold text-white transition-all hover:shadow-lg hover:scale-105"
         >
           RESERVAR PLAZA FUNDADORA — 19€
           <ArrowRight size={16} />
