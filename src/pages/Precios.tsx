@@ -31,7 +31,7 @@ const Precios = () => (
         className="relative mx-auto max-w-lg rounded-2xl border border-primary/40 shadow-glow-primary bg-gradient-card p-10"
       >
         <div className="mb-6 -mt-2 flex justify-center">
-          <span className="rounded-full bg-primary px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+          <span className="rounded-full border border-primary/40 bg-muted/50 px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
             Cohorte Fundadora
           </span>
         </div>
