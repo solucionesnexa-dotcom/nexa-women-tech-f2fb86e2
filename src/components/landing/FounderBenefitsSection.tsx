@@ -17,12 +17,12 @@ const FounderBenefitsSection = () => (
         className="mx-auto max-w-3xl"
       >
         <div className="rounded-3xl border border-accent/20 bg-gradient-card p-10 md:p-14 text-center">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">Cohorte 0 · Solo 20 plazas</p>
+          <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">Opcional · Acceso Premium</p>
           <h2 className="font-display text-3xl font-bold md:text-4xl">
-            Beneficios de ser <span className="text-gradient-accent">Fundadora</span>
+            Beneficios del <span className="text-gradient-accent">Acceso Fundador</span>
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Sé parte del grupo de 20 mujeres que validarán la cultura de ejecución de Nexa.
+            Para quienes quieren apoyar desde el inicio y tener voz directa en el desarrollo de Nexa.
           </p>
 
           <div className="mt-10 space-y-4 text-left">

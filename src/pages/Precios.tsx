@@ -213,9 +213,9 @@ const Precios = () => (
           <CardContent className="p-6 text-center">
             <div className="mb-4">
               <Sparkles className="h-8 w-8 text-primary mx-auto mb-2" />
-              <h3 className="font-semibold text-lg">Acceso Fundador (Legacy)</h3>
+              <h3 className="font-semibold text-lg">Acceso Fundador (Opcional)</h3>
               <p className="text-sm text-muted-foreground">
-                Para las primeras miembros que creyeron en Nexa
+                Para quienes quieren apoyar desde el inicio
               </p>
             </div>
             <div className="text-center mb-4">
@@ -223,7 +223,7 @@ const Precios = () => (
               <p className="text-xs text-muted-foreground">reserva + 29€/mes</p>
             </div>
             <Button asChild variant="outline" className="w-full">
-              <Link to="/auth">Reservar Plaza Fundadora</Link>
+              <Link to="/auth">Acceder como Fundadora</Link>
             </Button>
           </CardContent>
         </Card>

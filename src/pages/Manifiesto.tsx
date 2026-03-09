@@ -101,10 +101,10 @@ const Manifiesto = () => (
       >
 
         <Link
-          to="/precios"
+          to="/auth"
           className="inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-4 font-display text-sm font-bold text-white transition-all hover:shadow-lg hover:scale-105"
         >
-          Únete como Fundadora
+          Regístrate Gratis
         </Link>
       </motion.div>
     </div>

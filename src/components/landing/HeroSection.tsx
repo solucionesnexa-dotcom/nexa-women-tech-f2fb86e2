@@ -35,14 +35,14 @@ const HeroSection = () => (
         className="mt-10"
       >
         <Link
-          to="/precios"
+          to="/auth"
           className="group inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-5 font-display text-base font-bold text-white transition-all hover:shadow-lg hover:scale-105"
         >
-          Reservar mi plaza fundadora — 19€
+          Regístrate Gratis
           <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
         </Link>
         <p className="mt-4 text-sm text-muted-foreground">
-          Acceso anticipado · comunidad fundadora · plazas limitadas
+          Descubre tu ruta y conviértete en una de las pioneras de Nexa
         </p>
       </motion.div>
 
@@ -55,7 +55,7 @@ const HeroSection = () => (
         {[
           "IA como ventaja táctica para tu carrera",
           "Automatiza lo mundano, prioriza lo humano",
-          "20 fundadoras construyendo soberanía digital real",
+          "Comunidad de mujeres tech construyendo soberanía digital",
         ].map((text) => (
           <div key={text} className="flex items-center gap-3">
             <CheckCircle2 size={18} className="shrink-0 text-primary" />

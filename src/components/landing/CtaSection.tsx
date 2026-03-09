@@ -16,22 +16,19 @@ const CtaSection = () => (
           <span className="text-gradient-hero">autonomía intelectual y vital</span>?
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-          No dejes que el sistema decida por ti. Únete a las 20 fundadoras y empieza a construir tu libertad real hoy mismo.
+          No dejes que el sistema decida por ti. Regístrate gratis y descubre tu ruta personalizada hacia la libertad real.
         </p>
         <Link
-          to="/precios"
+          to="/auth"
           className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-5 font-display text-base font-bold text-white transition-all hover:shadow-lg hover:scale-105"
         >
-          RESERVAR PLAZA FUNDADORA — 19€
+          Regístrate Gratis
           <ArrowRight size={16} />
         </Link>
         <div className="mt-4 flex items-center justify-center gap-2 text-sm text-muted-foreground">
           <ShieldCheck size={16} className="text-primary" />
-          <span>Pago seguro · Acceso inmediato · Los 19€ se descuentan de tu primera cuota de 29€/mes</span>
+          <span>Registro gratuito · Sin compromiso · Acceso inmediato a la comunidad</span>
         </div>
-        <p className="mt-2 text-xs text-muted-foreground">
-          Compromiso mínimo de 3 meses · Suscripción fundadora: 29€/mes
-        </p>
       </motion.div>
     </div>
   </section>
