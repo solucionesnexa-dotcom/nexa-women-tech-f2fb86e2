@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, Users, FlaskConical, Bot, User, LogOut, Briefcase } from "lucide-react";
+import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
@@ -16,12 +16,11 @@ import {
 
 const items = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
-  { title: "Ruta", url: "/ruta", icon: BookOpen },
-  { title: "Comunidad", url: "/comunidad", icon: Users },
-  { title: "Labs", url: "/labs", icon: FlaskConical },
-  { title: "AI Toolkit", url: "/ai-toolkit", icon: Bot },
-  { title: "Career OS", url: "/career-os", icon: Briefcase },
-  { title: "Perfil", url: "/perfil", icon: User },
+  { title: "Mi Progreso", url: "/mi-progreso", icon: TrendingUp },
+  { title: "Ruta Automatiza", url: "/ruta-automatiza", icon: Zap },
+  { title: "Ruta Claridad", url: "/ruta-claridad", icon: Compass },
+  { title: "Ruta Profesional", url: "/ruta-pro", icon: Rocket },
+  { title: "Mi Perfil", url: "/perfil", icon: User },
 ];
 
 export function AppSidebar() {
