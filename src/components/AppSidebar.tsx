@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, Users, FlaskConical, Bot, User, LogOut } from "lucide-react";
+import { Home, BookOpen, Users, FlaskConical, Bot, User, LogOut, Briefcase } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
