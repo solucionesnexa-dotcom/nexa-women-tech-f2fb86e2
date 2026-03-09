@@ -22,6 +22,7 @@ import Dashboard from "./pages/Dashboard";
 import Labs from "./pages/Labs";
 import AIToolkit from "./pages/AIToolkit";
 import Perfil from "./pages/Perfil";
+import CareerOS from "./pages/CareerOS";
 
 const queryClient = new QueryClient();
 
@@ -51,6 +52,7 @@ const App = () => (
               <Route path="/labs" element={<Labs />} />
               <Route path="/ai-toolkit" element={<AIToolkit />} />
               <Route path="/perfil" element={<Perfil />} />
+              <Route path="/career-os" element={<CareerOS />} />
               <Route path="/admin" element={<AdminGuard><Admin /></AdminGuard>} />
             </Route>
 

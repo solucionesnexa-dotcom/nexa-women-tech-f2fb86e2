@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, BookOpen, Users, FlaskConical, Bot, User, LogOut } from "lucide-react";
+import { Home, BookOpen, Users, FlaskConical, Bot, User, LogOut, Briefcase } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
@@ -20,6 +20,7 @@ const items = [
   { title: "Comunidad", url: "/comunidad", icon: Users },
   { title: "Labs", url: "/labs", icon: FlaskConical },
   { title: "AI Toolkit", url: "/ai-toolkit", icon: Bot },
+  { title: "Career OS", url: "/career-os", icon: Briefcase },
   { title: "Perfil", url: "/perfil", icon: User },
 ];
 
