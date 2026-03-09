@@ -1,15 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Zap, Compass, Rocket, ArrowRight, RotateCcw } from "lucide-react";
+import { Sparkles, Zap, Compass, Rocket, ArrowRight, RotateCcw, Bot, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
-type Step = "home" | "q1" | "q2" | "result";
 type Profile = "automatiza" | "claridad" | "pro";
 
-const PROFILES: Record<Profile, { title: string; subtitle: string; description: string; cta: string; link: string; icon: typeof Zap }> = {
+const PROFILES: Record<Profile, { title: string; subtitle: string; description: string; cta: string; link: string; icon: typeof Zap; color: string }> = {
   automatiza: {
     title: "Constructora Inicial",
     subtitle: "Tu superpoder: automatizar lo repetitivo",
@@ -17,6 +16,7 @@ const PROFILES: Record<Profile, { title: string; subtitle: string; description: 
     cta: "Empezar Ruta Automatiza",
     link: "/ruta-automatiza",
     icon: Zap,
+    color: "text-primary",
   },
   claridad: {
     title: "Arquitecta en Descubrimiento",
@@ -25,6 +25,7 @@ const PROFILES: Record<Profile, { title: string; subtitle: string; description: 
     cta: "Descubrir Ruta Claridad",
     link: "/ruta-claridad",
     icon: Compass,
+    color: "text-accent",
   },
   pro: {
     title: "Constructora PRO",
@@ -33,181 +34,279 @@ const PROFILES: Record<Profile, { title: string; subtitle: string; description: 
     cta: "Explorar Ruta Profesional IA",
     link: "/ruta-pro",
     icon: Rocket,
+    color: "text-secondary",
   },
 };
+
+const STEPS = [
+  {
+    question: "¿Qué necesitas ahora mismo?",
+    options: [
+      { label: "Aprender a automatizar", scores: { automatiza: 2, claridad: 0, pro: 0 } },
+      { label: "Encontrar mi camino digital", scores: { automatiza: 0, claridad: 2, pro: 0 } },
+      { label: "Tengo varias ideas y necesito enfoque", scores: { automatiza: 0, claridad: 2, pro: 1 } },
+      { label: "Ya sé lo que quiero y quiero avanzar", scores: { automatiza: 0, claridad: 0, pro: 3 } },
+    ],
+  },
+  {
+    question: "¿Qué te atrae más de la tecnología?",
+    options: [
+      { label: "Crear sistemas", scores: { automatiza: 2, claridad: 0, pro: 1 } },
+      { label: "Ahorrar tiempo", scores: { automatiza: 2, claridad: 1, pro: 0 } },
+      { label: "Tener más libertad profesional", scores: { automatiza: 0, claridad: 2, pro: 1 } },
+      { label: "Crear una profesión o servicio digital", scores: { automatiza: 0, claridad: 0, pro: 2 } },
+      { label: "Entender qué encaja conmigo", scores: { automatiza: 0, claridad: 2, pro: 0 } },
+    ],
+  },
+  {
+    question: "¿En qué punto estás hoy?",
+    options: [
+      { label: "No he empezado aún", scores: { automatiza: 2, claridad: 1, pro: 0 } },
+      { label: "He probado cosas sueltas", scores: { automatiza: 1, claridad: 2, pro: 0 } },
+      { label: "Ya uso algunas herramientas", scores: { automatiza: 0, claridad: 1, pro: 2 } },
+      { label: "Quiero profesionalizarme", scores: { automatiza: 0, claridad: 0, pro: 3 } },
+    ],
+  },
+];
+
+type SavedResult = { profile: Profile; date: string };
+
+function getStoredResult(): SavedResult | null {
+  try {
+    const raw = localStorage.getItem("nexa-bot-result");
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function storeResult(profile: Profile) {
+  localStorage.setItem("nexa-bot-result", JSON.stringify({ profile, date: new Date().toISOString() }));
+}
+
+function clearResult() {
+  localStorage.removeItem("nexa-bot-result");
+}
 
 const Dashboard = () => {
   const { user } = useAuth();
   const firstName = user?.user_metadata?.full_name?.split(" ")[0] || "Soberana";
-  const [step, setStep] = useState<Step>("home");
-  const [q1Answer, setQ1Answer] = useState<string | null>(null);
-  const [profile, setProfile] = useState<Profile | null>(null);
 
-  const handleQ1 = (answer: string) => {
-    setQ1Answer(answer);
-    if (answer === "avanzar") {
-      setProfile("pro");
-      setStep("result");
-    } else {
-      setStep("q2");
-    }
+  const [botActive, setBotActive] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [answers, setAnswers] = useState<number[]>([]);
+  const [scores, setScores] = useState({ automatiza: 0, claridad: 0, pro: 0 });
+  const [result, setResult] = useState<Profile | null>(null);
+  const [savedResult, setSavedResult] = useState<SavedResult | null>(getStoredResult());
+  const [selectedOption, setSelectedOption] = useState<number | null>(null);
+
+  const startBot = () => {
+    setBotActive(true);
+    setCurrentStep(0);
+    setAnswers([]);
+    setScores({ automatiza: 0, claridad: 0, pro: 0 });
+    setResult(null);
+    setSelectedOption(null);
   };
 
-  const handleQ2 = (answer: string) => {
-    if (q1Answer === "automatizar") {
-      setProfile("automatiza");
-    } else if (q1Answer === "camino" || q1Answer === "ideas") {
-      setProfile("claridad");
-    } else {
-      // fallback based on q2
-      if (answer === "sistemas" || answer === "tiempo") setProfile("automatiza");
-      else if (answer === "libertad") setProfile("claridad");
-      else setProfile("pro");
-    }
-    setStep("result");
+  const selectOption = (optionIndex: number) => {
+    setSelectedOption(optionIndex);
+    const option = STEPS[currentStep].options[optionIndex];
+    const newScores = {
+      automatiza: scores.automatiza + option.scores.automatiza,
+      claridad: scores.claridad + option.scores.claridad,
+      pro: scores.pro + option.scores.pro,
+    };
+    setScores(newScores);
+    setAnswers([...answers, optionIndex]);
+
+    setTimeout(() => {
+      setSelectedOption(null);
+      if (currentStep < STEPS.length - 1) {
+        setCurrentStep(currentStep + 1);
+      } else {
+        // Calculate result
+        const max = Math.max(newScores.automatiza, newScores.claridad, newScores.pro);
+        let profile: Profile = "claridad";
+        if (newScores.pro === max) profile = "pro";
+        else if (newScores.automatiza === max) profile = "automatiza";
+        setResult(profile);
+        storeResult(profile);
+        setSavedResult({ profile, date: new Date().toISOString() });
+      }
+    }, 400);
   };
 
-  const reset = () => {
-    setStep("home");
-    setQ1Answer(null);
-    setProfile(null);
+  const resetBot = () => {
+    clearResult();
+    setSavedResult(null);
+    startBot();
+  };
+
+  const closeBotWithResult = () => {
+    setBotActive(false);
+    setResult(null);
   };
 
   return (
     <div className="container mx-auto p-6 max-w-4xl">
-      <AnimatePresence mode="wait">
-        {/* HOME */}
-        {step === "home" && (
-          <motion.div key="home" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="space-y-8">
-            <div className="text-center space-y-2">
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Nexa Women Tech</p>
-              <h1 className="font-display text-3xl md:text-4xl font-bold">
-                Tu siguiente paso digital
-              </h1>
-              <p className="text-muted-foreground">Hola, <span className="text-primary font-medium">{firstName}</span> 👋</p>
-            </div>
+      {/* Header */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+        <p className="text-sm font-semibold uppercase tracking-widest text-primary">Nexa Women Tech</p>
+        <h1 className="font-display text-3xl md:text-4xl font-bold">Tu siguiente paso digital</h1>
+        <p className="text-muted-foreground mt-1">Hola, <span className="text-primary font-medium">{firstName}</span> 👋</p>
+      </motion.div>
 
-            <Card className="bg-gradient-card border-border">
-              <CardContent className="py-10 text-center space-y-6">
-                <Sparkles size={36} className="mx-auto text-primary" />
-                <h2 className="font-display text-xl md:text-2xl font-bold">
-                  Descubre si necesitas automatizar, claridad o ruta profesional
-                </h2>
-                <p className="text-sm text-muted-foreground max-w-md mx-auto">
-                  En 2 minutos sabrás exactamente cómo empezar a construir tu soberanía digital
-                </p>
-                <div className="grid gap-4 sm:grid-cols-3 max-w-2xl mx-auto pt-4">
-                  <Button variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 border-primary/30 hover:border-primary hover:bg-primary/5" asChild>
-                    <Link to="/ruta-automatiza">
-                      <Zap size={24} className="text-primary" />
-                      <span className="font-display font-bold">Quiero automatizar</span>
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 border-accent/30 hover:border-accent hover:bg-accent/5" asChild>
-                    <Link to="/ruta-claridad">
-                      <Compass size={24} className="text-accent" />
-                      <span className="font-display font-bold">Quiero claridad</span>
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="lg" className="h-auto py-6 flex flex-col gap-2 border-secondary/30 hover:border-secondary hover:bg-secondary/5" asChild>
-                    <Link to="/ruta-pro">
-                      <Rocket size={24} className="text-secondary" />
-                      <span className="font-display font-bold">Ruta PRO</span>
-                    </Link>
-                  </Button>
+      {/* Saved result banner */}
+      {savedResult && !botActive && (
+        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+          <Card className="border-primary/20 bg-primary/5">
+            <CardContent className="py-4 flex items-center justify-between flex-wrap gap-3">
+              <div className="flex items-center gap-3">
+                {(() => { const P = PROFILES[savedResult.profile]; const Icon = P.icon; return <Icon size={20} className={P.color} />; })()}
+                <div>
+                  <p className="text-sm font-medium">Tu ruta actual: <span className="text-primary font-bold">{PROFILES[savedResult.profile].title}</span></p>
+                  <p className="text-xs text-muted-foreground">{PROFILES[savedResult.profile].subtitle}</p>
                 </div>
-              </CardContent>
-            </Card>
-
-            <div className="text-center">
-              <Button onClick={() => setStep("q1")} size="lg" className="gap-2">
-                <Sparkles size={18} />
-                No sé cuál elegir — Ayúdame
-              </Button>
-            </div>
-          </motion.div>
-        )}
-
-        {/* Q1 */}
-        {step === "q1" && (
-          <motion.div key="q1" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="max-w-2xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm text-primary font-medium">
-                <Sparkles size={14} /> Pregunta 1 de 2
               </div>
-              <h2 className="font-display text-2xl font-bold">¿Qué necesitas ahora mismo?</h2>
-            </div>
-            <div className="grid gap-3">
-              {[
-                { key: "automatizar", label: "Aprender a automatizar", icon: Zap },
-                { key: "camino", label: "Encontrar mi camino digital", icon: Compass },
-                { key: "ideas", label: "Tengo varias ideas y necesito enfoque", icon: Sparkles },
-                { key: "avanzar", label: "Ya sé lo que quiero y quiero avanzar", icon: Rocket },
-              ].map((opt) => (
-                <Button key={opt.key} variant="outline" size="lg" className="h-auto py-5 justify-start gap-4 text-left" onClick={() => handleQ1(opt.key)}>
-                  <opt.icon size={20} className="text-primary shrink-0" />
-                  <span className="font-medium">{opt.label}</span>
+              <div className="flex gap-2">
+                <Button size="sm" variant="outline" className="gap-1 text-xs" onClick={resetBot}>
+                  <RotateCcw size={12} /> Rehacer test
                 </Button>
-              ))}
-            </div>
-            <button onClick={reset} className="text-xs text-muted-foreground hover:text-foreground mx-auto block">← Volver</button>
-          </motion.div>
-        )}
-
-        {/* Q2 */}
-        {step === "q2" && (
-          <motion.div key="q2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="max-w-2xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
-              <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm text-primary font-medium">
-                <Sparkles size={14} /> Pregunta 2 de 2
+                <Button size="sm" className="gap-1 text-xs" asChild>
+                  <Link to={PROFILES[savedResult.profile].link}>
+                    Ir a mi ruta <ArrowRight size={12} />
+                  </Link>
+                </Button>
               </div>
-              <h2 className="font-display text-2xl font-bold">¿Qué te atrae más de la tecnología?</h2>
-            </div>
-            <div className="grid gap-3">
-              {[
-                { key: "sistemas", label: "Crear sistemas" },
-                { key: "tiempo", label: "Ahorrar tiempo" },
-                { key: "libertad", label: "Tener más libertad profesional" },
-                { key: "profesion", label: "Crear una profesión o servicio digital" },
-              ].map((opt) => (
-                <Button key={opt.key} variant="outline" size="lg" className="h-auto py-5 justify-start gap-4 text-left" onClick={() => handleQ2(opt.key)}>
-                  <span className="font-medium">{opt.label}</span>
-                </Button>
-              ))}
-            </div>
-            <button onClick={() => setStep("q1")} className="text-xs text-muted-foreground hover:text-foreground mx-auto block">← Volver</button>
-          </motion.div>
-        )}
+            </CardContent>
+          </Card>
+        </motion.div>
+      )}
 
-        {/* RESULT */}
-        {step === "result" && profile && (
-          <motion.div key="result" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} className="max-w-2xl mx-auto space-y-8">
-            <div className="text-center space-y-2">
-              <p className="text-sm font-semibold uppercase tracking-widest text-primary">Tu perfil en Nexa</p>
-              <h2 className="font-display text-3xl font-bold">{PROFILES[profile].title}</h2>
-              <p className="text-accent font-medium">{PROFILES[profile].subtitle}</p>
+      {/* Bot block */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+        <Card className="bg-gradient-card border-border overflow-hidden">
+          <CardContent className="p-0">
+            {/* Bot header */}
+            <div className="flex items-center gap-3 px-6 py-4 border-b border-border bg-card/50">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/20">
+                <Bot size={20} className="text-primary" />
+              </div>
+              <div>
+                <h2 className="font-display font-bold text-lg">Descubre tu siguiente paso digital</h2>
+                <p className="text-xs text-muted-foreground">Bot de orientación • 3 preguntas • 1 minuto</p>
+              </div>
             </div>
-            <Card className="bg-gradient-card border-border">
-              <CardContent className="py-8 text-center space-y-6">
-                {(() => { const Icon = PROFILES[profile].icon; return <Icon size={40} className="mx-auto text-primary" />; })()}
-                <p className="text-muted-foreground max-w-md mx-auto">{PROFILES[profile].description}</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                  <Button size="lg" className="gap-2" asChild>
-                    <Link to={PROFILES[profile].link}>
-                      {PROFILES[profile].cta}
-                      <ArrowRight size={16} />
-                    </Link>
-                  </Button>
-                  <Button variant="outline" size="lg" className="gap-2" onClick={reset}>
-                    <RotateCcw size={16} />
-                    Probar otra ruta
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* Bot content */}
+            <div className="px-6 py-8 min-h-[340px] flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                {/* Idle state */}
+                {!botActive && !result && (
+                  <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="text-center space-y-6">
+                    <div className="space-y-2">
+                      <Sparkles size={36} className="mx-auto text-primary/60" />
+                      <p className="text-muted-foreground max-w-md mx-auto">
+                        En 3 preguntas rápidas sabrás exactamente qué ruta de Nexa encaja con tu momento actual.
+                      </p>
+                    </div>
+                    <Button size="lg" className="gap-2" onClick={startBot}>
+                      <Bot size={18} />
+                      Empezar diagnóstico
+                    </Button>
+                  </motion.div>
+                )}
+
+                {/* Questions */}
+                {botActive && result === null && currentStep < STEPS.length && (
+                  <motion.div key={`step-${currentStep}`} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} transition={{ duration: 0.3 }} className="space-y-6">
+                    {/* Progress */}
+                    <div className="flex items-center gap-2 justify-center">
+                      {STEPS.map((_, i) => (
+                        <div key={i} className={`h-2 rounded-full transition-all duration-300 ${i <= currentStep ? "bg-primary w-10" : "bg-muted w-6"}`} />
+                      ))}
+                    </div>
+
+                    {/* Bot message bubble */}
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary/20 mt-1">
+                        <Bot size={16} className="text-primary" />
+                      </div>
+                      <div className="rounded-2xl rounded-tl-md bg-muted px-5 py-3">
+                        <p className="font-medium">{STEPS[currentStep].question}</p>
+                        <p className="text-[11px] text-muted-foreground mt-1">Paso {currentStep + 1} de {STEPS.length}</p>
+                      </div>
+                    </div>
+
+                    {/* Options as clickable buttons */}
+                    <div className="space-y-2 pl-11">
+                      {STEPS[currentStep].options.map((opt, i) => (
+                        <motion.button
+                          key={i}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 + i * 0.06 }}
+                          onClick={() => selectOption(i)}
+                          disabled={selectedOption !== null}
+                          className={`w-full text-left rounded-xl border px-4 py-3 text-sm font-medium transition-all flex items-center justify-between gap-2 ${
+                            selectedOption === i
+                              ? "border-primary bg-primary/10 text-primary"
+                              : "border-border bg-card hover:border-primary/40 hover:bg-primary/5"
+                          } disabled:cursor-default`}
+                        >
+                          <span>{opt.label}</span>
+                          <ChevronRight size={14} className={`shrink-0 transition-colors ${selectedOption === i ? "text-primary" : "text-muted-foreground"}`} />
+                        </motion.button>
+                      ))}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Result */}
+                {result && (
+                  <motion.div key="result" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="text-center space-y-6">
+                    <div className="space-y-1">
+                      <p className="text-xs font-semibold uppercase tracking-widest text-primary">Tu perfil en Nexa</p>
+                      <h3 className="font-display text-2xl font-bold">{PROFILES[result].title}</h3>
+                      <p className={`font-medium text-sm ${PROFILES[result].color}`}>{PROFILES[result].subtitle}</p>
+                    </div>
+
+                    {(() => { const Icon = PROFILES[result].icon; return <Icon size={44} className={`mx-auto ${PROFILES[result].color}`} />; })()}
+
+                    <p className="text-muted-foreground text-sm max-w-md mx-auto">{PROFILES[result].description}</p>
+
+                    <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                      <Button size="lg" className="gap-2" asChild onClick={closeBotWithResult}>
+                        <Link to={PROFILES[result].link}>
+                          {PROFILES[result].cta}
+                          <ArrowRight size={16} />
+                        </Link>
+                      </Button>
+                      <Button variant="outline" size="lg" className="gap-2" onClick={resetBot}>
+                        <RotateCcw size={16} />
+                        Rehacer test
+                      </Button>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </CardContent>
+        </Card>
+      </motion.div>
+
+      {/* Quick access */}
+      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-3">
+        {(["automatiza", "claridad", "pro"] as Profile[]).map((key) => {
+          const p = PROFILES[key];
+          const Icon = p.icon;
+          return (
+            <Link key={key} to={p.link} className="flex items-center gap-3 p-4 rounded-xl border border-border bg-card hover:bg-muted transition-colors">
+              <Icon size={20} className={p.color} />
+              <span className="font-medium text-sm">{p.cta.replace("Empezar ", "").replace("Descubrir ", "").replace("Explorar ", "")}</span>
+            </Link>
+          );
+        })}
+      </motion.div>
     </div>
   );
 };
