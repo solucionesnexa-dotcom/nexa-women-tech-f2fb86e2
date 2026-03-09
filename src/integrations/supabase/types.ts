@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      career_os: {
+        Row: {
+          ai_stack: Json | null
+          automation_builder: Json | null
+          career_vision: Json | null
+          created_at: string
+          id: string
+          opportunity_builder: Json | null
+          personal_workflow: Json | null
+          progress_tracker: Json | null
+          skills_map: Json | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          ai_stack?: Json | null
+          automation_builder?: Json | null
+          career_vision?: Json | null
+          created_at?: string
+          id?: string
+          opportunity_builder?: Json | null
+          personal_workflow?: Json | null
+          progress_tracker?: Json | null
+          skills_map?: Json | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          ai_stack?: Json | null
+          automation_builder?: Json | null
+          career_vision?: Json | null
+          created_at?: string
+          id?: string
+          opportunity_builder?: Json | null
+          personal_workflow?: Json | null
+          progress_tracker?: Json | null
+          skills_map?: Json | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       cohort_members: {
         Row: {
           cohort_id: string
