@@ -8,7 +8,7 @@ import nexaLogo from "@/assets/nexa-logo.png";
 const links = [
   { to: "/", label: "Inicio" },
   { to: "/manifiesto", label: "Manifiesto" },
-  { to: "/precios", label: "Precios" },
+  { to: "/precios", label: "Suscripción" },
 ];
 
 const Navbar = () => {

@@ -30,8 +30,10 @@ const Precios = () => (
         transition={{ delay: 0.15 }}
         className="relative mx-auto max-w-lg rounded-2xl border border-primary/40 shadow-glow-primary bg-gradient-card p-10"
       >
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
-          Cohorte Fundadora
+        <div className="mb-6 -mt-2 flex justify-center">
+          <span className="rounded-full bg-primary px-4 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+            Cohorte Fundadora
+          </span>
         </div>
 
         <div className="mb-6 flex items-center gap-2">
@@ -79,7 +81,7 @@ const Precios = () => (
 
         <Link
           to="/auth"
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-4 font-display text-sm font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[hsl(183,72%,56%)] px-6 py-4 font-display text-sm font-bold text-white transition-all hover:shadow-glow-primary hover:scale-105"
         >
           Reservar mi plaza — 19€
           <ArrowRight size={14} />
