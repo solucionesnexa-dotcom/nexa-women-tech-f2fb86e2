@@ -41,7 +41,7 @@ const Navbar = () => {
           {user ? (
             <Link
               to="/dashboard"
-              className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
+              className="rounded-lg bg-cyan-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-cyan-600 hover:shadow-lg"
             >
               Ir a Plataforma
             </Link>
@@ -55,7 +55,7 @@ const Navbar = () => {
               </Link>
               <Link
                 to="/auth"
-                className="rounded-lg bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground transition-all hover:shadow-glow-primary"
+                className="rounded-lg bg-cyan-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-cyan-600 hover:shadow-lg"
               >
                 Regístrate
               </Link>
@@ -93,7 +93,7 @@ const Navbar = () => {
                 <Link
                   to="/dashboard"
                   onClick={() => setOpen(false)}
-                  className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
+                  className="rounded-lg bg-cyan-500 px-5 py-2 text-center text-sm font-semibold text-white"
                 >
                   Ir a Plataforma
                 </Link>
@@ -109,7 +109,7 @@ const Navbar = () => {
                   <Link
                     to="/auth"
                     onClick={() => setOpen(false)}
-                    className="rounded-lg bg-primary px-5 py-2 text-center text-sm font-semibold text-primary-foreground"
+                    className="rounded-lg bg-cyan-500 px-5 py-2 text-center text-sm font-semibold text-white"
                   >
                     Regístrate
                   </Link>

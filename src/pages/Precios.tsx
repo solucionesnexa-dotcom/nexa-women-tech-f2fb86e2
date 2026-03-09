@@ -188,7 +188,7 @@ const Precios = () => (
 
                 <Button
                   asChild
-                  className={`w-full ${plan.popular ? "bg-primary hover:bg-primary/90" : ""}`}
+                  className={`w-full ${plan.popular ? "bg-cyan-500 hover:bg-cyan-600" : ""}`}
                   variant={plan.popular ? "default" : "outline"}
                 >
                   <Link to={plan.ctaLink}>

@@ -144,12 +144,12 @@ const AdminResources = () => {
               ref={fileRef}
               type="file"
               accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.md,.csv,.zip,.png,.jpg,.jpeg,.mp4,.mp3,.wav,.m4a,.ogg,.aac"
-              className="text-sm text-muted-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-primary/10 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-primary file:cursor-pointer"
+              className="text-sm text-muted-foreground file:mr-3 file:rounded-lg file:border-0 file:bg-cyan-500/10 file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-cyan-500 file:cursor-pointer"
             />
             <button
               onClick={handleUpload}
               disabled={!title.trim() || uploading}
-              className="ml-auto rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:shadow-glow-primary disabled:opacity-50"
+              className="ml-auto rounded-lg bg-cyan-500 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-cyan-600 disabled:opacity-50"
             >
               {uploading ? "Subiendo..." : "Subir"}
             </button>

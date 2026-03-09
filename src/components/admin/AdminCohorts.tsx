@@ -71,7 +71,7 @@ const AdminCohorts = () => {
                 className="w-24 rounded-lg bg-muted/50 border border-border px-4 py-2.5 text-sm text-foreground outline-none focus:border-primary" />
             </div>
             <button onClick={handleCreate} disabled={!name.trim()}
-              className="ml-auto rounded-lg bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground transition hover:shadow-glow-primary disabled:opacity-50">
+              className="ml-auto rounded-lg bg-cyan-500 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-cyan-600 disabled:opacity-50">
               Crear
             </button>
           </div>
