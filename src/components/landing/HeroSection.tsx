@@ -20,13 +20,11 @@ const HeroSection = () => (
       <motion.div {...fadeUp}>
         <img src={nexaHeroLogo} alt="Nexa Women Tech" className="mx-auto mb-10 h-40 w-40 animate-float" />
         <h1 className="font-display text-4xl font-bold leading-[1.15] sm:text-5xl md:text-6xl lg:text-7xl">
-          Funda el movimiento de mujeres que dominarán la <span className="text-gradient-hero">IA</span>
+          Lidera la Revolución de la{" "}
+          <span className="text-gradient-hero">Soberanía Digital Femenina</span>
         </h1>
-        <p className="mt-4 font-display text-lg font-semibold tracking-wide text-primary sm:text-xl">
-          Empowered by AI. Empowering others.
-        </p>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed">
-          Reserva tu plaza en Nexa Women Tech y aprende a construir una carrera profesional autónoma y flexible usando inteligencia artificial.
+          No construyas cadenas, diseña sistemas. Deja de elegir entre tu éxito profesional y tu vida personal con el poder de la IA y la automatización.
         </p>
       </motion.div>
 
@@ -40,11 +38,11 @@ const HeroSection = () => (
           to="/precios"
           className="group inline-flex items-center gap-2 rounded-2xl bg-primary px-10 py-5 font-display text-base font-bold text-primary-foreground transition-all hover:shadow-glow-primary hover:scale-105"
         >
-          Reservar mi plaza como Fundadora — 19€
+          Reservar mi plaza fundadora — 19€
           <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
         </Link>
         <p className="mt-4 text-sm text-muted-foreground">
-          Plazas limitadas · acceso anticipado a la comunidad fundadora.
+          Solo 20 cupos · Precio de reserva que se descuenta de tu primera cuota
         </p>
       </motion.div>
 
@@ -55,9 +53,9 @@ const HeroSection = () => (
         className="mt-14 mx-auto max-w-xl space-y-3"
       >
         {[
-          "Aprende IA aplicada al trabajo real",
-          "Diseña tu propio sistema profesional flexible",
-          "Conecta con mujeres construyendo nuevas carreras digitales",
+          "IA como ventaja táctica para tu carrera",
+          "Automatiza lo mundano, prioriza lo humano",
+          "20 fundadoras construyendo soberanía digital real",
         ].map((text) => (
           <div key={text} className="flex items-center gap-3">
             <CheckCircle2 size={18} className="shrink-0 text-primary" />

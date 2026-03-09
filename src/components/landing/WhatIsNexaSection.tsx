@@ -1,25 +1,25 @@
 import { motion } from "framer-motion";
-import { Sparkles, Brain, Shield, Rocket } from "lucide-react";
+import { Sparkles, Heart, Shield, Sword } from "lucide-react";
 
 const features = [
   {
-    icon: Brain,
-    title: "Aprende IA aplicada",
-    desc: "Formación práctica en inteligencia artificial para tu carrera profesional. Sin tecnicismos, con resultados.",
+    icon: Heart,
+    title: "Humanizamos la tecnología",
+    desc: "Para que deje de ser intimidante y se convierta en tu aliada más poderosa.",
     color: "text-primary",
     bg: "bg-primary/10",
   },
   {
     icon: Shield,
-    title: "Comunidad de mujeres",
-    desc: "Un espacio seguro para compartir, aprender y crecer junto a mujeres con los mismos objetivos.",
+    title: "Fomentamos la soberanía",
+    desc: "Eliminando dependencias externas. Tú controlas tus herramientas, tus datos y tu carrera.",
     color: "text-accent",
     bg: "bg-accent/10",
   },
   {
-    icon: Rocket,
-    title: "Herramientas y sistemas",
-    desc: "Acceso a prompts, plantillas, automatizaciones y recursos para construir tu sistema profesional digital.",
+    icon: Sword,
+    title: "Lideramos desde la trinchera",
+    desc: "La jerarquía se basa en la ejecución, no en el estatus. Aquí se construye, no se observa.",
     color: "text-secondary",
     bg: "bg-secondary/10",
   },
@@ -36,14 +36,14 @@ const WhatIsNexaSection = () => (
       >
         <p className="mb-2 text-sm font-semibold uppercase tracking-widest text-primary">
           <Sparkles size={14} className="inline mr-1 -mt-0.5" />
-          Qué es Nexa
+          Tu Unidad de Ejecución
         </p>
         <h2 className="font-display text-3xl font-bold md:text-4xl">
-          Una plataforma para mujeres que quieren{" "}
-          <span className="text-gradient-hero">dominar la IA</span>
+          Nexa no es un foro de discusión, es una{" "}
+          <span className="text-gradient-hero">unidad de ejecución táctica</span>
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-          Nexa Women Tech combina aprendizaje, comunidad y herramientas para que diseñes una carrera profesional flexible y autónoma.
+          Somos una red neuronal de mujeres que entienden que la tecnología no es para trabajar más, sino para que el sistema trabaje para nosotras.
         </p>
       </motion.div>
 
