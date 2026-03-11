@@ -23,7 +23,7 @@ const PLANS = [
       "Acceso limitado a biblioteca",
     ],
     cta: "Comenzar Gratis",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: false,
   },
   {
