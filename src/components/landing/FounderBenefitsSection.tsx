@@ -5,6 +5,7 @@ const benefits = [
   { icon: Crown, text: "Acceso Vitalicio al Precio de Lanzamiento: 29€/mes (frente a los futuros aumentos)" },
   { icon: Mic, text: "Voz Directa en el Roadmap: Influye en las herramientas y automatizaciones que desarrollaremos" },
   { icon: MessageCircle, text: "Mentoría Estrecha: Feedback directo sobre tus propuestas y sistemas de IA" },
+  { icon: Crown, text: "Las primeras 20 fundadoras tendrán suscripción PRO por el precio de la Premium" },
 ];
 
 const FounderBenefitsSection = () => (
