@@ -61,6 +61,7 @@ const App = () => (
               <Route path="/retos" element={<Retos />} />
               <Route path="/sesiones" element={<Sesiones />} />
               <Route path="/ruta-automatiza" element={<RutaAutomatiza />} />
+              <Route path="/n8n-automatiza" element={<N8nAutomatiza />} />
               <Route path="/ruta-claridad" element={<RutaClaridad />} />
               <Route path="/ruta-pro" element={<RutaPro />} />
               <Route path="/ai-toolkit" element={<AIToolkit />} />
