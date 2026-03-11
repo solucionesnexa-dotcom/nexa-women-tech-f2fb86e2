@@ -22,6 +22,7 @@ import Dashboard from "./pages/Dashboard";
 import AIToolkit from "./pages/AIToolkit";
 import Perfil from "./pages/Perfil";
 import RutaAutomatiza from "./pages/RutaAutomatiza";
+import N8nAutomatiza from "./pages/N8nAutomatiza";
 import RutaClaridad from "./pages/RutaClaridad";
 import RutaPro from "./pages/RutaPro";
 import MiProgreso from "./pages/MiProgreso";
