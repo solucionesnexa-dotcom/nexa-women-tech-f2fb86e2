@@ -70,7 +70,7 @@ const PLANS = [
       "Acceso anticipado a nuevas features",
     ],
     cta: "Comenzar Ruta PRO",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: false,
   },
 ];
