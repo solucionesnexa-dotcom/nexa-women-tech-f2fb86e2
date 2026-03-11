@@ -23,7 +23,7 @@ const FounderBenefitsSection = () => (
             Beneficios del <span className="text-gradient-accent">Acceso Fundador</span>
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Para quienes quieren apoyar desde el inicio y tener voz directa en el desarrollo de Nexa.
+            Para quienes quieran apoyar desde el inicio y tener voz directa en el desarrollo de Nexa.
           </p>
 
           <div className="mt-10 space-y-4 text-left">
