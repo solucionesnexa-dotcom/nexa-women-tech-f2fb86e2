@@ -46,7 +46,7 @@ const PLANS = [
       "Badge de miembro premium",
     ],
     cta: "Upgrade a Premium",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: true,
   },
   {
