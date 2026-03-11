@@ -5,6 +5,7 @@ const benefits = [
   { icon: Crown, text: "Acceso Vitalicio al Precio de Lanzamiento: 29€/mes (frente a los futuros aumentos)" },
   { icon: Mic, text: "Voz Directa en el Roadmap: Influye en las herramientas y automatizaciones que desarrollaremos" },
   { icon: MessageCircle, text: "Mentoría Estrecha: Feedback directo sobre tus propuestas y sistemas de IA" },
+  { icon: Crown, text: "Las primeras 20 fundadoras tendrán suscripción PRO por el precio de la Premium" },
 ];
 
 const FounderBenefitsSection = () => (
@@ -22,7 +23,7 @@ const FounderBenefitsSection = () => (
             Beneficios del <span className="text-gradient-accent">Acceso Fundador</span>
           </h2>
           <p className="mx-auto mt-4 max-w-lg text-muted-foreground">
-            Para quienes quieren apoyar desde el inicio y tener voz directa en el desarrollo de Nexa.
+            Para quienes quieran apoyar desde el inicio y tener voz directa en el desarrollo de Nexa.
           </p>
 
           <div className="mt-10 space-y-4 text-left">

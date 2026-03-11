@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Zap, Calendar, CheckSquare, Bot, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -40,9 +41,11 @@ const RutaAutomatiza = () => (
     </div>
 
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="text-center">
-      <Button size="lg" className="gap-2">
-        Empezar mi primera automatización
-        <ArrowRight size={16} />
+      <Button size="lg" className="gap-2" asChild>
+        <Link to="/n8n-automatiza">
+          Empezar mi primera automatización
+          <ArrowRight size={16} />
+        </Link>
       </Button>
     </motion.div>
   </div>

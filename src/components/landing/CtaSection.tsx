@@ -19,7 +19,7 @@ const CtaSection = () => (
           No dejes que el sistema decida por ti. Regístrate gratis y descubre tu ruta personalizada hacia la libertad real.
         </p>
         <Link
-          to="/auth"
+          to="/auth?mode=register"
           className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-5 font-display text-base font-bold text-white transition-all hover:shadow-lg hover:scale-105"
         >
           Regístrate Gratis
