@@ -107,7 +107,7 @@ const Navbar = () => {
                     Iniciar sesión
                   </Link>
                   <Link
-                    to="/auth"
+                    to="/auth?mode=register"
                     onClick={() => setOpen(false)}
                     className="rounded-lg bg-cyan-500 px-5 py-2 text-center text-sm font-semibold text-white"
                   >
