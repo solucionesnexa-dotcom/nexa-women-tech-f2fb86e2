@@ -54,7 +54,7 @@ const Navbar = () => {
                 Iniciar sesión
               </Link>
               <Link
-                to="/auth?mode=register"
+                to="/auth"
                 className="rounded-lg bg-cyan-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-cyan-600 hover:shadow-lg"
               >
                 Regístrate
@@ -107,7 +107,7 @@ const Navbar = () => {
                     Iniciar sesión
                   </Link>
                   <Link
-                    to="/auth?mode=register"
+                    to="/auth"
                     onClick={() => setOpen(false)}
                     className="rounded-lg bg-cyan-500 px-5 py-2 text-center text-sm font-semibold text-white"
                   >
