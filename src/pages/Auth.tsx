@@ -88,6 +88,7 @@ const Auth = () => {
     }
   };
 
+  return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 pt-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
