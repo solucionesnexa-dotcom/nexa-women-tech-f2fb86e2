@@ -79,8 +79,15 @@ const Auth = () => {
     register: { title: "Únete a Nexa", subtitle: "Crea tu cuenta y descubre tu ruta digital" },
     forgot: { title: "Recuperar contraseña", subtitle: "Te enviaremos un enlace para restablecer tu contraseña" },
   };
+  const handleGoogleLogin = async () => {
+    const { error } = await lovable.auth.signInWithOAuth("google", {
+      redirect_uri: window.location.origin,
+    });
+    if (error) {
+      toast({ title: "Error", description: error.message, variant: "destructive" });
+    }
+  };
 
-  return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 pt-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
