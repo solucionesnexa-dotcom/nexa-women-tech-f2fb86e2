@@ -54,7 +54,7 @@ const Navbar = () => {
                 Iniciar sesión
               </Link>
               <Link
-                to="/auth"
+                to="/auth?mode=register"
                 className="rounded-lg bg-cyan-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-cyan-600 hover:shadow-lg"
               >
                 Regístrate
