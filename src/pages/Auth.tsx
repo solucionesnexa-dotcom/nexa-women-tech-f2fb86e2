@@ -11,7 +11,7 @@ type AuthMode = "login" | "register" | "forgot";
 
 const Auth = () => {
   const [searchParams] = useSearchParams();
-  const defaultMode = searchParams.get("mode") === "login" ? "login" : "register";
+  const defaultMode = searchParams.get("mode") === "register" ? "register" : "login";
   const [mode, setMode] = useState<AuthMode>(defaultMode);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
