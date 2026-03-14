@@ -255,7 +255,7 @@ const Precios = () => {
                 <Sparkles className="h-8 w-8 text-primary mx-auto mb-2" />
                 <h3 className="font-semibold text-lg">Reserva Fundadora</h3>
                 <p className="text-sm text-muted-foreground">
-                  Para quienes quieren apoyar desde el inicio
+                  Para quienes quieran apoyar desde el inicio
                 </p>
               </div>
               <div className="text-center mb-4">
