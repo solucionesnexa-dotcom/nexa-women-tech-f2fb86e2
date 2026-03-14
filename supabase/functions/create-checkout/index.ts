@@ -34,18 +34,23 @@ serve(async (req) => {
       customerId = customers.data[0].id;
     }
 
-    const { data: body } = await req.json().then(d => ({ data: d })).catch(() => ({ data: {} }));
-    const priceId = body?.priceId || Deno.env.get("STRIPE_FOUNDER_PRICE_ID");
+    const body = await req.json().catch(() => ({}));
+    const priceId = body?.priceId;
+    const mode = body?.mode || "subscription";
 
-    const session = await stripe.checkout.sessions.create({
+    if (!priceId) throw new Error("priceId is required");
+
+    const sessionParams: any = {
       customer: customerId,
       customer_email: customerId ? undefined : user.email,
       line_items: [{ price: priceId, quantity: 1 }],
-      mode: "subscription",
-      success_url: `${req.headers.get("origin")}/comunidad?payment=success`,
+      mode,
+      success_url: `${req.headers.get("origin")}/dashboard?payment=success`,
       cancel_url: `${req.headers.get("origin")}/precios?payment=canceled`,
       metadata: { user_id: user.id },
-    });
+    };
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return new Response(JSON.stringify({ url: session.url }), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
