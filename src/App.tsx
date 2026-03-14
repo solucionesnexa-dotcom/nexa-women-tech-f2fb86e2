@@ -9,6 +9,7 @@ import PrivateLayout from "@/components/layouts/PrivateLayout";
 import AdminGuard from "@/components/AdminGuard";
 
 import Index from "./pages/Index";
+import Ruta from "./pages/Ruta";
 import Comunidad from "./pages/Comunidad";
 import Precios from "./pages/Precios";
 import Auth from "./pages/Auth";
@@ -50,6 +51,7 @@ const App = () => (
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/ruta" element={<Ruta />} />
             </Route>
 
             {/* Rutas Privadas */}

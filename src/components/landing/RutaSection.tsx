@@ -63,7 +63,7 @@ const RutaSection = () => (
               transition={{ delay: i * 0.15 }}
               className={`relative rounded-2xl bg-gradient-card border ${stage.borderColor} p-8 text-center`}
             >
-              <div className={`relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full ${stage.bgColor} font-display text-lg font-bold text-accent-foreground mb-4`}>
+              <div className={`relative z-10 mx-auto flex h-14 w-14 items-center justify-center rounded-full ${stage.bgColor} font-display text-lg font-bold ${i === 0 ? 'text-primary-foreground' : 'text-accent-foreground'} mb-4`}>
                 {stage.stage}
               </div>
               <h3 className={`font-display text-xl font-bold mb-1 ${stage.color}`}>{stage.title}</h3>
