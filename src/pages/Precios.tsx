@@ -28,7 +28,7 @@ const PLANS = [
       "Acceso limitado a biblioteca",
     ],
     stripeKey: null,
-    ctaLink: "/auth?mode=register",
+    ctaLink: "/auth",
     cta: "Comenzar Gratis",
     popular: false,
   },
@@ -97,7 +97,8 @@ const Precios = () => {
 
   const handleCheckout = async (stripeKey: "premium" | "pro" | "fundadora") => {
     if (!user) {
-      navigate("/auth?mode=register");
+      // Redirigir al login (no al registro) para que usuarias existentes puedan acceder directamente
+      navigate("/auth");
       return;
     }
 
