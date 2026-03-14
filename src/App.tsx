@@ -51,6 +51,7 @@ const App = () => (
               <Route path="/privacidad" element={<Privacidad />} />
               <Route path="/cookies" element={<Cookies />} />
               <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/ruta" element={<Ruta />} />
             </Route>
 
             {/* Rutas Privadas */}
