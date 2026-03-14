@@ -23,7 +23,7 @@ const PLANS = [
       "Acceso limitado a biblioteca",
     ],
     cta: "Comenzar Gratis",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: false,
   },
   {
@@ -46,7 +46,7 @@ const PLANS = [
       "Badge de miembro premium",
     ],
     cta: "Upgrade a Premium",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: true,
   },
   {
@@ -70,7 +70,7 @@ const PLANS = [
       "Acceso anticipado a nuevas features",
     ],
     cta: "Comenzar Ruta PRO",
-    ctaLink: "/auth",
+    ctaLink: "/auth?mode=register",
     popular: false,
   },
 ];
