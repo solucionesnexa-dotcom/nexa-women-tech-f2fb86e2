@@ -100,11 +100,13 @@ const Manifiesto = () => (
         className="mx-auto max-w-3xl mt-16 text-center space-y-6"
       >
 
-       <Button asChild>
-  <Link href="/registro">  {/* O tu ruta signup real */}
-    Regístrate gratis ahora
-  </Link>
-</Button>
+        <Link
+          to="/register"
+          className="inline-flex items-center gap-2 rounded-2xl bg-cyan-500 px-10 py-4 font-display text-sm font-bold text-white transition-all hover:shadow-lg hover:scale-105"
+        >
+          Regístrate Gratis
+        </Link>
+      </motion.div>
     </div>
   </div>
 );
