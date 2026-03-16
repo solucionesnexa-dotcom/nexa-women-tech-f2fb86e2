@@ -17,6 +17,7 @@ const tabIcons: Record<Tab, typeof Users> = {
   Recursos: FileText,
   Cohortes: BookOpen,
   Posts: MessageSquare,
+  API: Key,
 };
 
 const Admin = () => {
