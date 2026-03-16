@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Users, CreditCard, BookOpen, MessageSquare, FileText, Settings } from "lucide-react";
+import { Users, CreditCard, BookOpen, MessageSquare, FileText, Settings, Key } from "lucide-react";
 import AdminUsers from "@/components/admin/AdminUsers";
 import AdminPayments from "@/components/admin/AdminPayments";
 import AdminResources from "@/components/admin/AdminResources";
 import AdminCohorts from "@/components/admin/AdminCohorts";
 import AdminPosts from "@/components/admin/AdminPosts";
+import AdminAPI from "@/components/admin/AdminAPI";
 
-const TABS = ["Usuarios", "Pagos", "Recursos", "Cohortes", "Posts"] as const;
+const TABS = ["Usuarios", "Pagos", "Recursos", "Cohortes", "Posts", "API"] as const;
 type Tab = typeof TABS[number];
 
 const tabIcons: Record<Tab, typeof Users> = {
@@ -16,6 +17,7 @@ const tabIcons: Record<Tab, typeof Users> = {
   Recursos: FileText,
   Cohortes: BookOpen,
   Posts: MessageSquare,
+  API: Key,
 };
 
 const Admin = () => {
@@ -60,6 +62,7 @@ const Admin = () => {
             {activeTab === "Recursos" && <AdminResources />}
             {activeTab === "Cohortes" && <AdminCohorts />}
             {activeTab === "Posts" && <AdminPosts />}
+            {activeTab === "API" && <AdminAPI />}
           </div>
         </div>
       </div>

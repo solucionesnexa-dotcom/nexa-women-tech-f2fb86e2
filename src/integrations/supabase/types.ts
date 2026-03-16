@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      api_keys: {
+        Row: {
+          created_at: string
+          created_by: string
+          expires_at: string | null
+          id: string
+          is_active: boolean
+          key_hash: string
+          key_prefix: string
+          last_used_at: string | null
+          name: string
+          permissions: string[]
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          key_hash: string
+          key_prefix: string
+          last_used_at?: string | null
+          name: string
+          permissions?: string[]
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          expires_at?: string | null
+          id?: string
+          is_active?: boolean
+          key_hash?: string
+          key_prefix?: string
+          last_used_at?: string | null
+          name?: string
+          permissions?: string[]
+        }
+        Relationships: []
+      }
       career_os: {
         Row: {
           ai_stack: Json | null
@@ -286,6 +325,83 @@ export type Database = {
         }
         Relationships: []
       }
+      webhook_logs: {
+        Row: {
+          created_at: string
+          event: string
+          id: string
+          payload: Json
+          response_body: string | null
+          status_code: number | null
+          webhook_id: string
+        }
+        Insert: {
+          created_at?: string
+          event: string
+          id?: string
+          payload?: Json
+          response_body?: string | null
+          status_code?: number | null
+          webhook_id: string
+        }
+        Update: {
+          created_at?: string
+          event?: string
+          id?: string
+          payload?: Json
+          response_body?: string | null
+          status_code?: number | null
+          webhook_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "webhook_logs_webhook_id_fkey"
+            columns: ["webhook_id"]
+            isOneToOne: false
+            referencedRelation: "webhooks"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      webhooks: {
+        Row: {
+          created_at: string
+          created_by: string
+          events: string[]
+          failure_count: number
+          id: string
+          is_active: boolean
+          last_triggered_at: string | null
+          name: string
+          secret: string | null
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          created_by: string
+          events?: string[]
+          failure_count?: number
+          id?: string
+          is_active?: boolean
+          last_triggered_at?: string | null
+          name: string
+          secret?: string | null
+          url: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string
+          events?: string[]
+          failure_count?: number
+          id?: string
+          is_active?: boolean
+          last_triggered_at?: string | null
+          name?: string
+          secret?: string | null
+          url?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -297,6 +413,13 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      validate_api_key: {
+        Args: { p_key_hash: string }
+        Returns: {
+          api_key_id: string
+          permissions: string[]
+        }[]
       }
     }
     Enums: {
