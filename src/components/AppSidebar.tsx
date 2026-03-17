@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut, BookOpen, Trophy, Calendar } from "lucide-react";
+import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut, BookOpen, Trophy, Calendar, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
