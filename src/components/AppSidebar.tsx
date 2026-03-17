@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut, BookOpen, Trophy, Calendar } from "lucide-react";
+import { Home, TrendingUp, Zap, Compass, Rocket, User, LogOut, BookOpen, Trophy, Calendar, Settings } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import nexaLogo from "@/assets/nexa-logo.png";
 import {
@@ -28,7 +28,8 @@ const items = [
 
 export function AppSidebar() {
   const location = useLocation();
-  const { signOut } = useAuth();
+  const { signOut, roles } = useAuth();
+  const isAdmin = roles.includes("admin");
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border bg-card">
@@ -54,6 +55,22 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        {isAdmin && (
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild isActive={location.pathname === "/admin"}>
+                    <Link to="/admin">
+                      <Settings className="h-5 w-5" />
+                      <span>Admin</span>
+                    </Link>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
       <SidebarFooter>
         <SidebarMenu>
