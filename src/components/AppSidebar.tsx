@@ -28,7 +28,8 @@ const items = [
 
 export function AppSidebar() {
   const location = useLocation();
-  const { signOut } = useAuth();
+  const { signOut, roles } = useAuth();
+  const isAdmin = roles.includes("admin");
 
   return (
     <Sidebar collapsible="icon" className="border-r border-border bg-card">
