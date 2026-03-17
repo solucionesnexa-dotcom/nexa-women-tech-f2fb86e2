@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Sparkles, Loader2 } from "lucide-react";
+import { X, Send, Sparkles, Loader2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import { supabase } from "@/integrations/supabase/client";
 
 type Msg = { role: "user" | "assistant"; content: string };
 
 const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/community-chat`;
+const MAX_MESSAGES = 12;
+const MAX_INPUT_CHARS = 800;
 
 const AIChatbot = () => {
   const [open, setOpen] = useState(false);
@@ -23,6 +26,16 @@ const AIChatbot = () => {
   const sendMessage = async () => {
     const text = input.trim();
     if (!text || isLoading) return;
+    if (text.length > MAX_INPUT_CHARS) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: `⚠️ El mensaje es demasiado largo. Máximo ${MAX_INPUT_CHARS} caracteres.`,
+        },
+      ]);
+      return;
+    }
 
     const userMsg: Msg = { role: "user", content: text };
     const newMessages = [...messages, userMsg];
@@ -33,13 +46,22 @@ const AIChatbot = () => {
     let assistantSoFar = "";
 
     try {
+      const { data: { session } } = await supabase.auth.getSession();
+      const fallbackKey =
+        import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ?? import.meta.env.VITE_SUPABASE_ANON_KEY;
+      const authHeader = session?.access_token
+        ? `Bearer ${session.access_token}`
+        : fallbackKey
+          ? `Bearer ${fallbackKey}`
+          : undefined;
+
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          ...(authHeader ? { Authorization: authHeader } : {}),
         },
-        body: JSON.stringify({ messages: newMessages }),
+        body: JSON.stringify({ messages: newMessages.slice(-MAX_MESSAGES) }),
       });
 
       if (!resp.ok) {

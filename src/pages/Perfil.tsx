@@ -13,7 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 
 const Perfil = () => {
-  const { user, isFounder } = useAuth();
+  const { user, isFounder, subscription, refreshSubscription } = useAuth();
   const { toast } = useToast();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -22,7 +22,6 @@ const Perfil = () => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [subscription, setSubscription] = useState<any>(null);
 
   useEffect(() => {
     if (!user) return;
@@ -39,10 +38,7 @@ const Perfil = () => {
           setAvatarUrl(data.avatar_url);
         }
       });
-    // Fetch subscription
-    supabase.functions
-      .invoke("check-subscription")
-      .then(({ data }) => setSubscription(data));
+    void refreshSubscription();
   }, [user]);
 
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,6 +83,7 @@ const Perfil = () => {
     const { data, error } = await supabase.functions.invoke("customer-portal");
     if (data?.url) {
       window.open(data.url, "_blank");
+      void refreshSubscription();
     } else {
       toast({ title: "Error", description: error?.message || "No se pudo abrir el portal.", variant: "destructive" });
     }

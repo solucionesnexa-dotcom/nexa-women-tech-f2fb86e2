@@ -21,13 +21,21 @@ export const PaywallGuard = ({
   requiredLevel = "premium",
   feature
 }: PaywallGuardProps) => {
-  const { user } = useAuth();
+  const { subscription, subscriptionLoading } = useAuth();
 
-  // Mock subscription check - in real app, check from context/database
-  const hasSubscription = user?.email?.includes("premium") || false; // Mock logic
-  const isPro = user?.email?.includes("pro") || false; // Mock logic
+  const subscribed = Boolean(subscription?.subscribed);
+  const plan = (subscription?.plan ?? "").toLowerCase();
+  const isPro = subscribed && plan.includes("pro");
+  const isPremium = subscribed && (plan.includes("premium") || plan.includes("pro"));
+  const hasAccess = requiredLevel === "premium" ? isPremium : isPro;
 
-  const hasAccess = requiredLevel === "premium" ? hasSubscription : isPro;
+  if (subscriptionLoading) {
+    return (
+      <div className="min-h-[200px] flex items-center justify-center bg-background rounded-lg border border-border">
+        <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
+      </div>
+    );
+  }
 
   if (hasAccess) {
     return <>{children}</>;
